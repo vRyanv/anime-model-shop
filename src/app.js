@@ -1,4 +1,4 @@
-const port = 2108
+const port = process.env.PORt || 2108
 const path = require('path')
 
 //add library dev
