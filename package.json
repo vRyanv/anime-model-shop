@@ -1,0 +1,29 @@
+{
+  "name": "anime-model-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon --inspect src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vRyanv/anime-model-shop.git"
+  },
+  "author": "ryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vRyanv/anime-model-shop/issues"
+  },
+  "homepage": "https://github.com/vRyanv/anime-model-shop#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
+  }
+}
