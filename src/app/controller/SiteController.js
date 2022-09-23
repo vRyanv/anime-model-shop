@@ -21,7 +21,17 @@ class SiteController{
 
     admin(req, res, next)
     {
+        res.render('admin/dashboard')
+    }
 
+    login(req, res, next)
+    {
+        res.render('client/login/login')
+    }
+
+    cart(req, res, next)
+    {
+        res.render('client/cart/cart')
     }
 }
 

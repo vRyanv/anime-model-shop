@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dash board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="assets/images/decoration/icon-home.png">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/admin/dashboard.css">
+    <link rel="stylesheet" href="assets/css/admin/animationLoadingWeb.css">
+    <link rel="stylesheet" href="assets/css/admin/animationLoading.css">
+</head>
+<body>
+<div class="process-image"></div>
+<div id="root_admin">
+    <div id="root_dashboard">
+        <div id="block_dashboard">
+            <div id="header_dashboard">
+                <img id="icon_header_dashboard" src="assets/images/decoration/performance.png" alt="">
+                <div id="title_dashboard">Dashboard</div>
+            </div>
+            <div id="btn_show_dashboard">
+                <img src="assets/images/decoration/right-arrow.png" alt="">
+            </div>
+            <div id="body_dashboard">
+                <div class="controller-in-dashboard" id="dashboard_controller" data-page="dashboard"><img src="assets/images/decoration/house.png" alt=""> Home </div>
+                <div class="controller-in-dashboard" id="post_controller" data-page="post"><img src="assets/images/decoration/document.png" alt=""> Post </div>
+                <div class="controller-in-dashboard" id="image_controller" data-page="image"><img src="assets/images/decoration/upload-image.png" alt=""> Image </div>
+                <div class="controller-in-dashboard" id="files_controller" data-page="files"><img src="assets/images/decoration/binder.png" alt=""> File </div>
+                <a href="/logout" style="text-decoration: none; color: black"><div class="controller-in-dashboard"><img src="assets/images/decoration/logout.png" alt="">Logout</div></a>
+            </div>
+        </div>
+    </div>
+    <div id="root_body">
+
+    </div>
+</div>
+</body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="assets/js/admin/dashboard/dashboard.js"></script>
+</html>
