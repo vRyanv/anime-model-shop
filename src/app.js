@@ -29,4 +29,4 @@ app.set('views', path.join(__dirname, 'app/view'))
 //Rout inita
 route(app)
 
-app.listen( process.env.PORt || 2108, () => console.log(`listen request`))
+app.listen( process.env.PORT || 2108, () => console.log(`listen request`))
