@@ -1,4 +1,4 @@
-const port = process.env.PORt || 2108
+const port = 2108
 const path = require('path')
 
 //add library dev
@@ -29,4 +29,4 @@ app.set('views', path.join(__dirname, 'app/view'))
 //Rout inita
 route(app)
 
-app.listen( port, () => console.log(`listen request: port: ${port}`))
+app.listen( process.env.PORt || 2108, () => console.log(`listen request`))
