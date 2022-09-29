@@ -1,14 +1,13 @@
 const express = require('express')
 const route = express.Router()
 const siteController = require('../app/controller/SiteController')
+const authentication = require("../middleware/authentication");
 
 
-route.get('/about', siteController.about)
-route.get('/contact', siteController.contact)
-route.get('/shop', siteController.shop)
-route.get('/admin', siteController.admin)
-route.get('/login', siteController.login)
-route.get('/cart', siteController.cart)
-route.get('/', siteController.home)
+route.get('/', siteController.login)
+route.get('/logout', siteController.logout)
+route.get('/dashboard', (req, res, next) => authentication.checkCookie(req, res, next), siteController.dashboard)
+route.get('/supper-admin', (req, res, next) => authentication.checkCookie(req, res, next),siteController.supperAdminPage)
+route.get('*', siteController.page404)
 
 module.exports = route

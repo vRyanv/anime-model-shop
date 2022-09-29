@@ -1,38 +1,39 @@
 class SiteController{
-    home(req, res, next)
+
+    login(req, res)
     {
-        res.render('client/index/index')
+        res.render('admin/login/login')
     }
 
-    about(req, res, next)
+    logout(req, res)
     {
-        res.render('client/index/about')
+        res.cookie('__token_user', null)
+        res.redirect('/')
     }
 
-    contact(req, res, next)
+    dashboard(req, res)
     {
-        res.render('client/index/contact')
+        if(req.role === '1')
+        {
+            res.render('admin/dashboard.ejs', {role:1})
+        }
+        else
+        {
+            res.render('admin/dashboard.ejs', {role:0})
+        }
     }
 
-    shop(req, res, next)
+    page404(req, res, next)
     {
-        res.render('client/index/shop')
+        res.status(404)
+        res.render('admin/404page')
     }
 
-    admin(req, res, next)
+    supperAdminPage(req, res)
     {
-        res.render('admin/dashboard')
+        res.send('supper admin')
     }
 
-    login(req, res, next)
-    {
-        res.render('client/login/login')
-    }
-
-    cart(req, res, next)
-    {
-        res.render('client/cart/cart')
-    }
 }
 
 module.exports = new SiteController
