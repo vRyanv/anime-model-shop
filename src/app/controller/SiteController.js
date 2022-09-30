@@ -15,11 +15,11 @@ class SiteController{
     {
         if(req.role === '1')
         {
-            res.render('admin/dashboard.ejs', {role:1})
+            res.render('admin/dashboard.ejs', {page:'dashboard', role:1})
         }
         else
         {
-            res.render('admin/dashboard.ejs', {role:0})
+            res.render('admin/dashboard.ejs', {page:'dashboard', role:0})
         }
     }
 

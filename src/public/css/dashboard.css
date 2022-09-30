@@ -81,5 +81,5 @@ html, body {
 
 /*// Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-    body {font-size:1.5rem;}
+    body {font-size:1.3rem;}
 }

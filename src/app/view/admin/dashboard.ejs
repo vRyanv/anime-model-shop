@@ -35,14 +35,15 @@
                     </div>
                     <div id="body_dashboard">
                         <% if(role !== 1) {%>
-                        <div class="controller-in-dashboard" id="dashboard_controller" data-page="dashboard"><i class="bi-house"></i> Home </div>
-                        <div class="controller-in-dashboard" id="product_controller" data-page="product"><i class="bi-slack"></i> Product </div>
-                        <div class="controller-in-dashboard" id="category_controller" data-page="category"><i class="bi-tags"></i> Category </div>
-                        <div class="controller-in-dashboard" id="sale_controller" data-page="sale"><i class="bi-shop"></i> Sales </div>
-                        <div class="controller-in-dashboard" id="order_controller" data-page="order"><i class="bi-shop"></i> Order </div>
-                        <div class="controller-in-dashboard" id="statistical_controller" data-page="statistical"><i class="bi-bar-chart-line"></i> Statistical </div>
+                        <div class="controller-in-dashboard <% if(page === "dashboard"){ %>active <%}%>"  data-page="dashboard"><i class="bi-house"></i> Dashboard </div>
+                        <div class="controller-in-dashboard <% if(page === "product"){ %>active <%}%>"  data-page="product"><i class="bi-slack"></i> Product </div>
+                        <div class="controller-in-dashboard <% if(page === "category"){ %>active <%}%>"  data-page="category"><i class="bi-tags"></i> Category </div>
+                        <div class="controller-in-dashboard <% if(page === "sale"){ %>active <%}%>"  data-page="sale"><i class="bi-shop"></i> Sales </div>
+                        <div class="controller-in-dashboard <% if(page === "order"){ %>active <%}%>"  data-page="order"><i class="bi-x-diamond"></i> Order </div>
+                        <div class="controller-in-dashboard <% if(page === "statistical"){ %>active <%}%>"  data-page="statistical"><i class="bi-bar-chart-line"></i> Statistical </div>
                         <% } else {%>
-                        <div class="controller-in-dashboard" id="supper_admin_controller" data-page="supper-admin"><i class="bi-speedometer2"></i> Supper admin </div>
+                        <div class="controller-in-dashboard" data-page="supper-admin"><i class="bi-speedometer2"></i> Dashboard </div>
+                        <div class="controller-in-dashboard"  data-page="supper-admin"><i class="bi-shop"></i> Shops </div>
                         <% } %>
                         <a href="/logout" style="text-decoration: none; color: black"><div class="controller-in-dashboard"><i class="bi-power"></i> Logout</div></a>
                     </div>
