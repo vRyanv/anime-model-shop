@@ -46,7 +46,7 @@ $(document).ready(function (){
                      if(data.status !== 400)
                      {
                          animationLogin()
-                         location.href = '/dashboard'
+                         data.role === 'admin' ? location.href = '/dashboard' : location.href = '/'
                      }
                      else
                      {

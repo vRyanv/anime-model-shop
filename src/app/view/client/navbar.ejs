@@ -1,0 +1,45 @@
+
+<section id="header" class="main-header <% if (page === 'about'){%> about-header inner-header <%} else if (page === 'shop'){%> shop-header inner-header <%}else if (page==='contact'){%>contact-header inner-header<%}%>">
+    <div class="container">
+
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#site-nav-bar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="site-nav-bar">
+                    <ul class="nav navbar-nav">
+                        <li <% if(page === 'home'){%> class="active" <%}%> ><a href="/">Home</a></li>
+                        <li <% if(page === 'about'){%> class="active" <%}%>><a href="/about">About</a></li>
+                        <li <% if(page === 'shop'){%> class="active" <%}%>><a href="/shop">Shop</a></li>
+                        <li <% if(page === 'contact'){%> class="active" <%}%>><a href="/contact">Contact</a></li>
+                        <% if(login) {%>
+                            <li <% if(page === 'home'){%> class="profile" <%}%>><a href="/profile">Profile</a></li>
+                            <li><a href="/logout">Logout</a></li>
+                        <%} else {%>
+                            <li><a href="/login">Login</a></li>
+                        <%}%>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </nav>
+        </div>
+
+        <div class="intro row">
+            <div class="overlay"></div>
+            <div class="col-sm-6 col-sm-offset-6">
+                <h2 class="header-quote">Save time and lower</h2>
+                <p>
+                    Your sweeping costs with the
+                </p>
+                <h1 class="header-title">Robot<br><span class="thin">Factory</span></h1>
+            </div>
+        </div> <!-- /.intro.row -->
+    </div> <!-- /.container -->
+    <div class="nutral"></div>
+</section>

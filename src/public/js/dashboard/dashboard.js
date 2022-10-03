@@ -19,7 +19,6 @@ $(document).ready(function (){
         },
         run: function (){
             this.listenerEvent()
-            this.renderDashboard()
         }
     }
     dashboard.run()
