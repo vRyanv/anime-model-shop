@@ -1,0 +1,7 @@
+<% if (type === 'list') {%>
+    <%- include('categoryList.ejs')%>
+<% }else if(type === 'add'){%>
+    <%- include('addCategory.ejs')%>
+<% } else {%>
+    <%- include('editCategory.ejs')%>
+<% }%>

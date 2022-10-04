@@ -1,5 +1,7 @@
 <% if (type === 'list') {%>
     <%- include('productList.ejs')%>
-<% }else {%>
+<% }else if(type === 'add'){%>
     <%- include('addProduct.ejs')%>
-<% } %>
+<% } else {%>
+    <%- include('editProduct.ejs')%>
+<% }%>

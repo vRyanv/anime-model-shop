@@ -8,19 +8,12 @@ class SiteController{
     logout(req, res)
     {
         res.cookie('__token_user', null)
-        res.redirect('/')
+        res.redirect('/login')
     }
 
     dashboard(req, res)
     {
-        if(req.role === '2')
-        {
-            res.render('admin/dashboard.ejs', {page:'dashboard', role:2})
-        }
-        else
-        {
-            res.render('admin/dashboard.ejs', {page:'dashboard', role:1})
-        }
+        res.render('admin/dashboard.ejs', {page:'dashboard', role: req.role})
     }
 
     page404(req, res)
@@ -28,11 +21,6 @@ class SiteController{
         res.status(404)
         res.render('admin/404page')
     }
-
-    // supperAdminPage(req, res)
-    // {
-    //     res.send('supper admin')
-    // }
 
     home(req, res)
     {
@@ -52,6 +40,11 @@ class SiteController{
     contact(req, res)
     {
         res.render('client/contact.ejs', {page:'contact', login:req.login})
+    }
+
+    profile(req, res)
+    {
+        req.login ? res.render('client/profile.ejs', {page:'profile', login:req.login}) : res.redirect('/login')
     }
 
     cart(req, res)

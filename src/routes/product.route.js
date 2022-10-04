@@ -6,7 +6,7 @@ const authentication = require("../middleware/authentication");
 
 //get site
 route.get('/add', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.getAdd)
-route.get('/edit', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.getEdit)
+route.get('/edit/:id', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.getEdit)
 route.get('/',(req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.getProductList)
 
 // CRUD

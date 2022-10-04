@@ -13,7 +13,7 @@ class ProductController{
 
     getEdit(req, res, next)
     {
-        res.send('dashboard user ID: ' + req.id)
+        res.render('admin/dashboard.ejs', {page: 'product', type:'edit', proId:req.params.id, role: req.role})
     }
 
     add()

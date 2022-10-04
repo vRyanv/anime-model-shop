@@ -34,7 +34,7 @@
                         <div id="title_dashboard">ATN</div>
                     </div>
                     <div id="body_dashboard">
-                        <% if(role === '2') {%>
+                        <% if(role === '1') {%>
                             <div class="controller-in-dashboard <% if(page === "dashboard"){ %>active <%}%>"  data-page="dashboard"><i class="bi-house"></i> Dashboard </div>
                             <div class="controller-in-dashboard <% if(page === "product"){ %>active <%}%>"  data-page="product"><i class="bi-slack"></i> Product </div>
                             <div class="controller-in-dashboard <% if(page === "category"){ %>active <%}%>"  data-page="category"><i class="bi-tags"></i> Category </div>
@@ -52,12 +52,12 @@
             <div id="root_body">
                 <% if(page === 'supperAdmin'){ %>
                     <%- include('./product/supperAdminIndex.ejs') %>
-                <% } else if(page === 'home'){%>
+                <% } else if(page === 'dashboard'){%>
                     <%- include('./product/home.ejs') %>
                 <% } else if(page === 'product'){%>
                     <%- include('./product/productIndex.ejs') %>
                 <% } else if(page === 'category'){%>
-                    <%- include('./product/categoryIndex.ejs') %>
+                    <%- include('./category/cateIndex.ejs') %>
                 <% } else if(page === 'sale'){%>
                     <%- include('./product/saleIndex.ejs') %>
                 <% } else if(page === 'order'){%>
