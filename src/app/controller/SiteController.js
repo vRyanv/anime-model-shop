@@ -5,6 +5,11 @@ class SiteController{
         res.render('admin/login/login')
     }
 
+    register(req, res)
+    {
+        res.render('admin/login/register')
+    }
+
     logout(req, res)
     {
         res.cookie('__token_user', null)
@@ -50,6 +55,11 @@ class SiteController{
     cart(req, res)
     {
         res.render('client/cart.ejs', {page:'cart', login:req.login})
+    }
+
+    profile(req, res)
+    {
+        res.render('client/profile.ejs', {page:'profile', login:req.login})
     }
 }
 

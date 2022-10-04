@@ -6,6 +6,7 @@ const authentication = require("../middleware/authentication");
 
 route.get('/login', siteController.login)
 route.get('/logout', siteController.logout)
+route.get('/register', siteController.register)
 
 //admin
 route.get('/dashboard', (req, res, next) => authentication.checkCookieAdmin(req, res, next), siteController.dashboard)

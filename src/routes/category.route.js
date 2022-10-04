@@ -1,8 +1,7 @@
 const express = require('express')
 const route = express.Router()
-const siteController = require('../app/controller/SiteController')
 const categoryController = require('../app/controller/CategoryController')
-const authentication = require("../middleware/authentication");
+const authentication = require("../middleware/authentication")
 
 //get site
 route.get('/add', (req, res, next) => authentication.checkCookieAdmin(req, res, next), categoryController.getAdd)

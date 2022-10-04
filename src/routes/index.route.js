@@ -2,6 +2,7 @@ const authentication = require('../middleware/authentication')
 const siteRouter = require('./site.route')
 const productRouter = require('./product.route')
 const categoryRouter = require('./category.route')
+const supplierRouter = require('./supplier.route')
 
 
 function route(app)
@@ -11,6 +12,7 @@ function route(app)
 
     app.use('/product', productRouter)
     app.use('/category', categoryRouter)
+    app.use('/supplier', supplierRouter)
 
     //page
     app.use('/', siteRouter)

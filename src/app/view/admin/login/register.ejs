@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/login.css">
 </head>
@@ -24,8 +24,13 @@
                     <input type="password" id="txt_pass" class="login__input" placeholder="Password">
                     <span id="empty_pass" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none"></span>
                 </div>
+                <div class="login__field">
+                    <i class="login__icon bi-lock"></i>
+                    <input type="password" id="txt_pass" class="login__input" placeholder="Password">
+                    <span id="empty_pass" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none"></span>
+                </div>
                 <button class="button login__submit">
-                    <span class="button__text">Log In Now</span>
+                    <span class="button__text">Register</span>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
                 <div id="mess_error_login" style="margin-top: 1rem; color: red;   text-shadow: 1px 1px white; display: none">
@@ -33,7 +38,7 @@
                 </div>
             </div>
             <div class="social-login">
-                <a href="/register"><h3>Register</h3></a>
+                <a href="/Login"><h3>Log in</h3></a>
             </div>
         </div>
         <div class="screen__background">
