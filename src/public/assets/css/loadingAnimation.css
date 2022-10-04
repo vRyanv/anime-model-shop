@@ -7,32 +7,6 @@
     z-index: 99;
 }
 
-.cart{
-    font-size: 4rem;
-    display: flex;
-    position: fixed;
-    right: 91px;
-    z-index: 10;
-    color: whitesmoke;
-    background-color: green;
-    padding: 1rem;
-    border-radius: 1rem;
-}
-
-.cart:hover{
-    cursor: pointer;
-    background-color: yellowgreen;
-}
-
-.cart span{
-    font-size: 2rem;
-    background-color: red;
-    height: 3rem;
-    width: 3rem;
-    text-align: center;
-    border-radius: 2rem;
-}
-
 .lds-grid {
     display: flex;
     position: fixed;

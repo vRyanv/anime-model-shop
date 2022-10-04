@@ -1,0 +1,7 @@
+<% if (type === 'list') {%>
+    <%- include('supplierList.ejs')%>
+<% }else if(type === 'add'){%>
+    <%- include('addSupplier.ejs')%>
+<% } else {%>
+    <%- include('editSupplier.ejs')%>
+<% }%>
