@@ -5,6 +5,6 @@ class AdminModel
 
     getAdmin(username, password)
     {
-        return database.query(`select * from admin where username = ${username} and password = ${password}`)
+        return database.query(`select * from users where username = ${username} and password = ${password}`)
     }
 }

@@ -28,8 +28,16 @@
         <label for="pro_name" class="form-label">Inventory</label>
         <input type="number" class="form-control" id="pro_name" placeholder="product name">
     </div>
+    <div class="mb-3">
+        <label for="img_preview" class="form-label">Image</label>
+        <div style="display: block">
+            <img src="/images/decoration/image-product.png" alt="..." class="img-thumbnail" id="img_preview" style="width: 13rem;">
+        </div>
+        <input type="file" id="pro_img" hidden>
+        <button class="btn btn-primary mt-3" id="btn_open_dialog_image">Choose image</button>
+    </div>
     <div style="text-align: end">
-        <input type="button" class="btn btn-success" value="Add">
+        <input type="button" class="btn btn-success" id="btn_submit_product" value="Add">
         <input type="button" class="btn btn-warning" value="cancel">
     </div>
 

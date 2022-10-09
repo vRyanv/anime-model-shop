@@ -1,0 +1,7 @@
+<% if(type === 'add'){%>
+    <%- include('addStaff.ejs') %>
+<% } else if(type === 'list') {%>
+    <%- include('listStaff.ejs') %>
+<% } else {%>
+    <%- include('editStaff.ejs') %>
+<% } %>

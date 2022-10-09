@@ -9,7 +9,7 @@ class Authentication
     {
         let username = req.body.username
         let pass = req.body.password
-        database.query(`select * from admin where username = '${username}' and password = '${pass}'`)
+        database.query(`select * from users where username = '${username}' and password = '${pass}'`)
             .then(result => {
                 if (result.rowCount > 0)
                 {

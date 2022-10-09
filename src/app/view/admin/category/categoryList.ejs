@@ -17,14 +17,14 @@
     </tr>
     </thead>
     <tbody>
-    <% for (let i=0; i<100;i++){ %>
+    <% for (let i=0; i<cateList.length;i++){ %>
     <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
+        <th scope="row"><%= i + 1 %></th>
+        <td> <%= cateList[i].cate_name %> </td>
         <td>
             <div class="btn-group" role="group">
-                <a href="/category/edit/3"><button type="button" class="btn btn-primary">Edit</button></a>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <a href="/category/edit/<%= cateList[i].cate_id %>"><button type="button" class="btn btn-primary">Edit</button></a>
+                <button type="button" class="btn btn-danger btn_delete_cate" data-cate-id="<%= cateList[i].cate_id %>">Delete</button>
             </div>
         </td>
     </tr>

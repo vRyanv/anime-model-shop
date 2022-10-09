@@ -14,7 +14,6 @@ $(document).ready(function (){
         getCurrentURL: function (){
             var locationCurrent = $(location).attr("href");
             var indexSubstring = locationCurrent.lastIndexOf('/');
-            console.log(locationCurrent.substring(indexSubstring + 1))
             return url = locationCurrent.substring(indexSubstring + 1);
         },
         run: function (){

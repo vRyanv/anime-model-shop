@@ -2,7 +2,7 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="d-flex" id="search_box_product" role="search">
-                <a href="/supplier/add"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_product_model" style="margin-left: 2rem">New supplier</button></a>
+                <a href="/supper-admin/shop/add"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_product_model" style="margin-left: 2rem">Add shop</button></a>
             </div>
         </div>
     </nav>
@@ -18,19 +18,26 @@
         </tr>
         </thead>
         <tbody>
-        <% for (let i=0; i<supList.length;i++){ %>
+        <% for (let i= 0; i < shopList.length;i++){ %>
             <tr>
                 <th scope="row"><%= i + 1 %></th>
-                <td><%= supList[i].sup_name %></td>
-                <td><%= supList[i].sup_address %></td>
+                <td><%= shopList[i].shop_name %></td>
+                <td><%= shopList[i].shop_address %></td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="/supplier/edit/<%= supList[i].sup_id %>"><button type="button" class="btn btn-primary">Edit</button></a>
-                        <button type="button" class="btn btn-danger btn-delete-sup" data-sup-id="<%= supList[i].sup_id %>">Delete</button>
+                        <a href="/supper-admin/shop/edit/<%= shopList[i].shop_id %>"><button type="button" class="btn btn-primary">Edit</button></a>
+                        <a href="/supper-admin/shop/delete/<%= shopList[i].shop_id %>"><button type="button" class="btn btn-danger">Delete</button></a>
                     </div>
                 </td>
             </tr>
         <% } %>
+        <% if(shopList.length === 0){%>
+            <tr>
+                <td>
+                <h4>shop list is empty</h4>
+                </td>
+            </tr>
+        <% }%>
         </tbody>
     </table>
 </div>

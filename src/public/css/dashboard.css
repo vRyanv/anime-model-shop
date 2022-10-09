@@ -30,6 +30,7 @@ html, body {
 #root_body{
     width: 100%;
     height: fit-content;
+    padding-bottom: 2rem;
 }
 
 .controller-in-dashboard{

@@ -112,6 +112,10 @@ body {
     transition: .2s;
 }
 
+.login__input::placeholder {
+    color: black;
+}
+
 .login__input:active,
 .login__input:focus,
 .login__input:hover {
@@ -268,4 +272,13 @@ body {
         width: 30px !important;
         height: 30px !important;
     }
+}
+
+.validate-error{
+    position: absolute;
+    margin-top: 10px;
+    color: orangered;
+    text-shadow: white 1px 1px;
+    display: none;
+    font-size: smaller;
 }
