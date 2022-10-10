@@ -14,8 +14,8 @@ class Authentication
                 if (result.rowCount > 0)
                 {
                     res.cookie(tokeName,jwt.sign({
-                        id:result.rows[0].id,
-                        role: result.rows[0].role
+                        userId:result.rows[0].user_id,
+                        userRole: result.rows[0].role
                     }, tokenKey))
                     result.rows[0].role === '0' ?   res.send({status:200, role: 'user'}) : res.send({status:200, role: 'admin'})
                 }
@@ -31,9 +31,10 @@ class Authentication
         try{
              let token = req.cookies.__token_user
              let decode = jwt.verify(token, tokenKey)
-             req.id = decode.id
-             req.role = decode.role
-             if(req.role === '0')
+             req.userId = decode.userId
+             req.userRole = decode.userRole
+
+             if(req.userRole === '0')
              {
                  res.render('admin/authFail.ejs')
              }
@@ -48,7 +49,7 @@ class Authentication
         try{
             let token = req.cookies.__token_user
             let decode = jwt.verify(token, tokenKey)
-            req.id = decode.id
+            req.userId = decode.userId
             req.login = true
             next()
         }catch (error){

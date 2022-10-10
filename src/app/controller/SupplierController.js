@@ -5,14 +5,14 @@ class SupplierController{
     {
         database.query(`select * from supplier`)
             .then((result) => {
-                res.render('admin/dashboard.ejs', {supList: result.rows, page:'supplier', type:'list', role: req.role})
+                res.render('admin/dashboard.ejs', {supList: result.rows, page:'supplier', type:'list', role: req.userRole})
             })
 
     }
 
     getAdd(req, res)
     {
-        res.render('admin/dashboard.ejs', {page: 'supplier', type:'add', role: req.role})
+        res.render('admin/dashboard.ejs', {page: 'supplier', type:'add', role: req.userRole})
 
     }
 
@@ -20,7 +20,7 @@ class SupplierController{
     {
         database.query(`select * from supplier where sup_id = ${req.params.id}`)
             .then((result) => {
-                res.render('admin/dashboard.ejs', { supplier: result.rows, page: 'supplier', type:'edit', role: req.role})
+                res.render('admin/dashboard.ejs', { supplier: result.rows, page: 'supplier', type:'edit', role: req.userRole})
             })
     }
 

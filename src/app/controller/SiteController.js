@@ -18,7 +18,7 @@ class SiteController{
 
     dashboard(req, res)
     {
-        res.render('admin/dashboard.ejs', {page:'dashboard', role: req.role})
+        res.render('admin/dashboard.ejs', {page:'dashboard', role: req.userRole})
     }
 
     page404(req, res)
@@ -60,6 +60,11 @@ class SiteController{
     profile(req, res)
     {
         res.render('client/profile.ejs', {page:'profile', login:req.login})
+    }
+
+    test(req, res)
+    {
+        res.render('client/test.ejs')
     }
 }
 

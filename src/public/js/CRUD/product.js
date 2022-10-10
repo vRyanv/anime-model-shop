@@ -1,8 +1,9 @@
 $(document).ready(function (){
     const appProduct = {
-        envenlistener: function (){
-            $('#btn_submit_product').click(function (){
-
+        eventListener: function (){
+            $('#pro_form').submit(function (e){
+                e.preventDefault()
+                appProduct.processProduct(this)
             })
 
             $('#btn_open_dialog_image').click(function (){
@@ -14,21 +15,32 @@ $(document).ready(function (){
             })
         },
         previewImage: function (){
+            document.getElementById("img_preview").src = '/images/decoration/image-product.png';
             var imageReader = new FileReader();
             imageReader.readAsDataURL(document.getElementById("pro_img").files[0]);
-
             imageReader.onload = function (oFREvent) {
                 document.getElementById("img_preview").src = oFREvent.target.result;
             };
         },
-        processProduct(){
-
+        processProduct(_this){
+            var proForm = new FormData(_this)
+            $.ajax({
+                url: $(_this).attr('action'),
+                type: $(_this).attr('method'),
+                data: proForm,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: function (data){
+                    console.log(data)
+                }
+            })
         },
         validateProduct: function (){
 
         },
         run: function (){
-            appProduct.envenlistener()
+            appProduct.eventListener()
         }
     }
 

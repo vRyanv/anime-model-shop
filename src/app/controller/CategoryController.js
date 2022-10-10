@@ -5,20 +5,20 @@ class CategoryController{
     {
         database.query(`select * from category`)
             .then((result) => {
-                res.render('admin/dashboard.ejs', {cateList: result.rows, page:'category', type:'list', role: req.role})
+                res.render('admin/dashboard.ejs', {cateList: result.rows, page:'category', type:'list', role: req.userRole})
             })
     }
 
     getAdd(req, res, next)
     {
-        res.render('admin/dashboard.ejs', {page: 'category', type:'add', role: req.role})
+        res.render('admin/dashboard.ejs', {page: 'category', type:'add', role: req.userRole})
     }
 
     getEdit(req, res, next)
     {
         database.query(`select * from category where cate_id = ${req.params.id}`)
             .then((result) => {
-                res.render('admin/dashboard.ejs', {category: result.rows,page: 'category', type:'edit', proId:req.params.id, role: req.role})
+                res.render('admin/dashboard.ejs', {category: result.rows,page: 'category', type:'edit', proId:req.params.id, role: req.userRole})
             })
 
     }

@@ -3,20 +3,20 @@ class SupperAdminController{
 
     statistical(req, res)
     {
-        res.render('admin/dashboard', {page:'dashboard', role: req.role})
+        res.render('admin/dashboard', {page:'dashboard', role: req.userRole})
     }
 
     shopManagement(req, res)
     {
         database.query(`select * from shop`)
             .then((result) => {
-                res.render('admin/dashboard', {shopList: result.rows, page: 'shopManagement', type: 'list',role:req.role})
+                res.render('admin/dashboard', {shopList: result.rows, page: 'shopManagement', type: 'list',role:req.userRole})
             })
     }
 
     addShop(req, res)
     {
-        res.render('admin/dashboard', {page: 'shopManagement', type: 'add', role:req.role})
+        res.render('admin/dashboard', {page: 'shopManagement', type: 'add', role:req.userRole})
     }
 
     addShopProcess(req, res)
@@ -42,7 +42,7 @@ class SupperAdminController{
     {
         database.query(`select user_id, fullname , phone, shop.shop_name from users, shop where shop.shop_id = users.shop_id`)
             .then((result) => {
-                res.render('admin/dashboard', {staffList: result.rows,page: 'staffManagement', type: 'list', role:req.role})
+                res.render('admin/dashboard', {staffList: result.rows,page: 'staffManagement', type: 'list', role:req.userRole})
             })
     }
 
@@ -50,7 +50,7 @@ class SupperAdminController{
     {
         database.query('select * from shop')
             .then((result) => {
-                res.render('admin/dashboard', { shopList: result.rows, page: 'staffManagement', type: 'add', role:req.role})
+                res.render('admin/dashboard', { shopList: result.rows, page: 'staffManagement', type: 'add', role:req.userRole})
             })
 
     }
@@ -84,7 +84,7 @@ class SupperAdminController{
                 database.query(`select * from shop`)
                     .then((shop) => {
                         console.log(staff.rows)
-                        res.render('admin/dashboard', {staff: staff.rows, shopList:shop.rows, page:'staffManagement', type: 'edit', role: req.role})
+                        res.render('admin/dashboard', {staff: staff.rows, shopList:shop.rows, page:'staffManagement', type: 'edit', role: req.userRole})
                 })
             })
     }
