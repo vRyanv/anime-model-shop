@@ -11,7 +11,7 @@ route.get('/',(req, res, next) => authentication.checkCookieAdmin(req, res, next
 
 // CRUD
 route.post('/add', (req, res, next) => authentication.checkCookieAdmin(req, res, next), upload.single('proImage'), productController.add)
-route.put('/edit', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.edit)
+route.post('/edit', (req, res, next) => authentication.checkCookieAdmin(req, res, next), upload.single('proImage'),productController.edit)
 route.delete('/delete', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.delete)
 
 module.exports = route

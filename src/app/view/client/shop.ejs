@@ -92,10 +92,10 @@
                 </div>
                 <div class="row">
                     <div class="boxed">
-                        <% for(let i=0;i<10;i++){ %>
+                        <% for(let i=0;i<proList.length;i++){ %>
                             <div class="col-sm-6">
                                 <div class="shop-box">
-                                    <img class="img-full img-responsive" src="assets/images/shop-1.png" alt="shop">
+                                    <img class="img-full img-responsive" src="/images/product/<%= proList[i].pro_image %>" alt="shop">
                                     <div class="shop-box-hover text-center">
                                         <div class="c-table">
                                             <div class="c-cell">
@@ -109,12 +109,12 @@
                                 <div class="shop-box-title">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h4>Industry Robot</h4>
-                                            <h4>MO: <span class="thin">#00SS5</span></h4>
+                                            <h4><%= proList[i].pro_name %></h4>
+                                            <h4>Category: <span class="thin"><%= proList[i].cate_name %></span></h4>
                                         </div>
                                         <div class="col-sm-6">
                                             <p class="shop-price" style="font-size: larger">
-                                                    $ 74.10
+                                                <%= proList[i].pro_price %>
                                             </p>
                                         </div>
                                     </div>

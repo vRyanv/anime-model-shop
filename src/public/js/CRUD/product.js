@@ -31,10 +31,30 @@ $(document).ready(function (){
                 cache:false,
                 contentType: false,
                 processData: false,
+                beforeSend: appProduct.animation(),
                 success: function (data){
-                    console.log(data)
+                    if(data.status === 200) {
+                        location.href = '/product'
+                    }else {
+                        appProduct.animation()
+                        alert('Something wrong: add product fail')
+                    }
+                },
+                error: function (){
+                    appProduct.animation()
+                    alert('Something wrong: add product fail')
                 }
             })
+        },
+        animation: function () {
+            if($('.canvas-animation').css('display') == 'none')
+            {
+                $('.canvas-animation').css('display', 'flex')
+            }
+            else
+            {
+                $('.canvas-animation').css('display', 'none')
+            }
         },
         validateProduct: function (){
 

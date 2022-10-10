@@ -1,12 +1,21 @@
 const productModel = require('../model/ProductModel')
 const categoryModel = require('../model/CategoryModel')
 const supplierModel = require('../model/SupplierModel')
+const {unlink} = require('node:fs')
 
 class ProductController{
 
     getProductList(req, res)
     {
-        res.render('admin/dashboard.ejs', {page:'product', type:'list', role: req.userRole})
+        productModel.getProList(req.userId)
+            .then((proList) => {
+                res.render('admin/dashboard.ejs', {
+                    proList,
+                    page:'product',
+                    type:'list',
+                    role: req.userRole
+                })
+            })
     }
 
     getAdd(req, res)
@@ -23,115 +32,84 @@ class ProductController{
             })
         }
         handleRequest()
-
-
-        // const handleRequest = new Promise(function (resolve, reject){
-        //     let data = {
-        //         cateList:null,
-        //         supList:null
-        //     }
-        //     categoryModel.getCateList().then(function (cateList){
-        //         data.cateList = cateList
-        //     })
-        //     supplierModel.getSupList().then(function (supList){
-        //         data.supList = supList
-        //     })
-        //     resolve(data)
-        // })
-        //
-        // handleRequest.then(function (data){
-        //     console.log(data)
-        //     res.render('admin/dashboard.ejs', {
-        //         cateList: data.cateList,
-        //         supList: data.supList,
-        //         page: 'product',
-        //         type:'add',
-        //         role: req.userRole
-        //     })
-        // })
-
-        // categoryModel.getCateList().then(function (cateList){
-        //     data.cateList = cateList
-        // }).then(() => {
-        //     supplierModel.getSupList().then(function (supList){
-        //         data.supList = supList
-        //     }).then(() => {
-        //         res.render('admin/dashboard.ejs', {
-        //             cateList: data.cateList,
-        //             supList: data.supList,
-        //             page: 'product',
-        //             type:'add',
-        //             role: req.userRole
-        //         })
-        //     })
-        // })
-
     }
 
-    getEdit(req, res, next)
+    getEdit(req, res)
     {
-        res.render('admin/dashboard.ejs', {page: 'product', type:'edit', proId:req.params.id, role: req.userRole})
+        const handleRequest = async() => {
+            const cateList = await categoryModel.getCateList()
+            const supList = await supplierModel.getSupList()
+            const pro = await productModel.findPro(req.params.id)
+            res.render('admin/dashboard.ejs', {
+                pro,
+                cateList,
+                supList,
+                page: 'product',
+                type:'edit',
+                role: req.userRole
+            })
+        }
+        handleRequest()
     }
 
     add(req, res)
     {
-        if(!req.errorUpload)
-        {
+        if(!req.errorUpload) {
             let product = {
-                cateId :req.body.cateId,
-                supId : req.body.supId,
+                cateId: req.body.proCate,
+                supId: req.body.proSup,
                 proName: req.body.proName,
                 proImage: req.file.filename,
-                proPrice : req.body.proPrice,
-                inventory : req.body.inventory,
+                proPrice: req.body.proPrice,
+                inventory: req.body.inventory,
             }
-            productModel.add(req.userId, product)
-                .then((result) => {
-                    console.log(result)
-                })
-
-
-                // .then((result) => {
-                    // console.log(result)
-                    // if(result.rowCount !== 0)
-                    // {
-                    //     console.log(result)
-                    //     res.send({status:200, mess:'add product success'})
-                    // }
-                    // else
-                    // {
-                    //     res.send({status:400, mess:'add product fail'})
-                    // }
-                // })
+                productModel.add(req.userId, product)
+                    .then((result) => {
+                        if(result){
+                            res.send({status:200, mess:'add product success'})
+                        }else {
+                            res.send({status:400, mess:'add product fail'})
+                        }
+                    })
+        } else {
+            res.send({status:400, mess:'invalid image'})
         }
     }
 
     edit(req, res)
     {
-        // if(!req.errorUpload)
-        // {
-        //     let product = {
-        //         cateId :req.body.cateId,
-        //         supId : req.body.supId,
-        //         proName: req.body.proName,
-        //         proImage: req.file.filename,
-        //         proPrice : req.body.proPrice,
-        //         inventory : req.body.inventory,
-        //     }
-        //     productModel.update(req.userId, product)
-        //         .then((result) => {
-        //             console.log(result)
-        //             // if(result.rowCount !== 0)
-        //             // {
-        //             //     console.log(result)
-        //             //     res.send({status:200, mess:'add product success'})
-        //             // }
-        //             // else
-        //             // {
-        //             //     res.send({status:400, mess:'add product fail'})
-        //             // }
-        //         })
-        // }
+        let product = {
+            cateId: req.body.proCate,
+            supId: req.body.proSup,
+            proName: req.body.proName,
+            proPrice: req.body.proPrice,
+            inventory: req.body.inventory,
+        }
+        if(req.file) {
+            productModel.edit(req.body.proId, product, req.file.filename)
+                .then((result) => {
+                    if(result.rowCount !== 0){
+                        console.log(result)
+                        // unlink('src/public/images/product/'+req., (err) => {
+                        //     if (!err){
+                        //         res.send({status:200, mess: 'update product success'})
+                        //     } else {
+                        //         res.send({status:400, mess: 'update product fail'})
+                        //     }
+                        // });
+                    }
+                })
+        }else {
+            productModel.edit(req.body.proId, product, '')
+                .then((result) => {
+                    if (result.rowCount !== 0){
+                        res.send({status:200, mess: 'update product success'})
+                    } else {
+                        res.send({status:400, mess: 'update product fail'})
+                    }
+                })
+        }
+
     }
 
     delete()

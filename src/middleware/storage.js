@@ -13,7 +13,6 @@ module.exports = multer({
     fileFilter: function (req, file, cb){
         if (file.mimetype === 'image/png'|| file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg')
         {
-            console.log(file.mimetype)
             cb(null, true);
         }
         else

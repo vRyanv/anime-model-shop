@@ -1,3 +1,4 @@
+const productModel = require('../model/ProductModel')
 class SiteController{
 
     login(req, res)
@@ -39,7 +40,11 @@ class SiteController{
 
     shop(req, res)
     {
-        res.render('client/shop.ejs', {page:'shop', login:req.login})
+        const handleRequest = async() => {
+            const proList = await productModel.getProForCustomer()
+            res.render('client/shop.ejs', {proList, page:'shop', login:req.login})
+        }
+        handleRequest()
     }
 
     contact(req, res)
@@ -62,10 +67,6 @@ class SiteController{
         res.render('client/profile.ejs', {page:'profile', login:req.login})
     }
 
-    test(req, res)
-    {
-        res.render('client/test.ejs')
-    }
 }
 
 module.exports = new SiteController

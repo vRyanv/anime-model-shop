@@ -12,16 +12,17 @@
     </nav>
 </div>
 <div style="padding-top: 3rem; padding-bottom: 1rem">
-    <% for (let i = 0; i < 20; i++){ %>
+    <% for (let i = 0; i < proList.length; i++){ %>
         <div class="card" style="width: 18rem; margin-right: 1.5rem; margin-top: 2rem;display: inline-block">
-            <img src="https://cdn-amz.woka.io/images/I/61r9IqcspNL.jpg" class="card-img-top" alt="...">
+            <img src="/images/product/<%= proList[i].pro_image %>" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h5 class="card-title">Category: anime</h5>
-                <h5 class="card-title">Price: 2.0$</h5>
+                <h5 class="card-title"><%= proList[i].pro_name %></h5>
+                <h5 class="card-title">Category: <%= proList[i].cate_name %></h5>
+                <h5 class="card-title">Price: <%= proList[i].pro_price %></h5>
+                <h5 class="card-title">Inventory: <%= proList[i].inventory %></h5>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="/product/edit/3"><button type="button" class="btn btn-primary">Update</button></a>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <a href="/product/edit/<%= proList[i].pro_id %>"><button type="button" class="btn btn-primary">Update</button></a>
+                    <button type="button" class="btn btn-danger" data-pro-id="<%= proList[i].pro_id %>">Delete</button>
                 </div>
             </div>
         </div>

@@ -19,7 +19,6 @@ route.get('/shop', (req, res, next) => authentication.checkCookieCustomer(req, r
 route.get('/contact', (req, res, next) => authentication.checkCookieCustomer(req, res, next),siteController.contact)
 route.get('/profile', (req, res, next) => authentication.checkCookieCustomer(req, res, next),siteController.profile)
 route.get('/cart', (req, res, next) => authentication.checkCookieCustomer(req, res, next),siteController.cart)
-route.get('/test',siteController.test)
 
 route.get('*', siteController.page404)
 
