@@ -3,26 +3,27 @@
         <div class="container-fluid">
             <div class="row">
             <div class="d-flex" id="search_box_product" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" id="btn_search_product" type="submit">Search</button>
+                <input class="form-control me-2" id="txt_search_pro" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" id="btn_search_product">Search</button>
                 <a href="/product/add"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_product_model" style="width: 8rem;margin-left: 2rem">New product</button></a>
             </div>
             </div>
         </div>
     </nav>
 </div>
-<div style="padding-top: 3rem; padding-bottom: 1rem">
+<div style="padding-top: 3rem; padding-bottom: 1rem" id="container_pro_list">
     <% for (let i = 0; i < proList.length; i++){ %>
         <div class="card" style="width: 18rem; margin-right: 1.5rem; margin-top: 2rem;display: inline-block">
             <img src="/images/product/<%= proList[i].pro_image %>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><%= proList[i].pro_name %></h5>
-                <h5 class="card-title">Category: <%= proList[i].cate_name %></h5>
                 <h5 class="card-title">Price: <%= proList[i].pro_price %></h5>
                 <h5 class="card-title">Inventory: <%= proList[i].inventory %></h5>
+                <h5 class="card-title">Category: <%= proList[i].cate_name %></h5>
+                <h5 class="card-title">Supplier: <%= proList[i].sup_name %></h5>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="/product/edit/<%= proList[i].pro_id %>"><button type="button" class="btn btn-primary">Update</button></a>
-                    <button type="button" class="btn btn-danger" data-pro-id="<%= proList[i].pro_id %>">Delete</button>
+                    <button type="button" class="btn btn-danger btn-delete-product" data-pro-id="<%= proList[i].pro_id %>">Delete</button>
                 </div>
             </div>
         </div>

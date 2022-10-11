@@ -8,6 +8,7 @@ const upload = require("../middleware/storage");
 route.get('/add', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.getAdd)
 route.get('/edit/:id', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.getEdit)
 route.get('/',(req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.getProductList)
+route.get('/search/:name', (req, res, next) => authentication.checkCookieAdmin(req, res, next), productController.searchPro)
 
 // CRUD
 route.post('/add', (req, res, next) => authentication.checkCookieAdmin(req, res, next), upload.single('proImage'), productController.add)

@@ -33,7 +33,6 @@ class Authentication
              let decode = jwt.verify(token, tokenKey)
              req.userId = decode.userId
              req.userRole = decode.userRole
-
              if(req.userRole === '0')
              {
                  res.render('admin/authFail.ejs')

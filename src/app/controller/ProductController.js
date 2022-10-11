@@ -5,6 +5,17 @@ const {unlink} = require('node:fs')
 
 class ProductController{
 
+    searchPro(req, res)
+    {
+        productModel.searchPro(req.userId, req.params.name)
+            .then((pro) => {
+                if(pro.length !== 0){
+                    res.send({status:200,pro})
+                } else {
+                    res.send({status:404, mess: 'Not found'})
+                }
+            })
+    }
     getProductList(req, res)
     {
         productModel.getProList(req.userId)
@@ -79,28 +90,31 @@ class ProductController{
     edit(req, res)
     {
         let product = {
+            proId: req.body.proId,
             cateId: req.body.proCate,
             supId: req.body.proSup,
             proName: req.body.proName,
             proPrice: req.body.proPrice,
             inventory: req.body.inventory,
         }
-        if(req.file) {
-            productModel.edit(req.body.proId, product, req.file.filename)
-                .then((result) => {
-                    if(result.rowCount !== 0){
-                        console.log(result)
-                        // unlink('src/public/images/product/'+req., (err) => {
-                        //     if (!err){
-                        //         res.send({status:200, mess: 'update product success'})
-                        //     } else {
-                        //         res.send({status:400, mess: 'update product fail'})
-                        //     }
-                        // });
-                    }
-                })
+
+        let processUpdateImage = async () =>{
+            const oldImage = await productModel.findPro(product.proId)
+            const result =  await productModel.edit(product, req.file.filename)
+            if(result.rowCount !== 0){
+                unlink('src/public/images/product/'+oldImage[0].pro_image, (err) => {
+                    if (!err){
+                        res.send({status:200, mess: 'update product success'})
+                    } else {
+                        res.send({status:400, mess: 'update product fail'})
+                    }});
+            }
+        }
+
+        if(req.hasImg) {
+            processUpdateImage()
         }else {
-            productModel.edit(req.body.proId, product, '')
+            productModel.edit(product, '')
                 .then((result) => {
                     if (result.rowCount !== 0){
                         res.send({status:200, mess: 'update product success'})
@@ -112,9 +126,23 @@ class ProductController{
 
     }
 
-    delete()
+    delete(req, res)
     {
-
+       const handleRequest = async () =>{
+           const deleteImg = await productModel.findPro(req.body.proId)
+           const result = await productModel.delete(req.body.proId)
+           if(result){
+               unlink('src/public/images/product/'+deleteImg[0].pro_image, (err) => {
+                   if (!err || err.errno === -4058){
+                       res.send({status:200, mess: 'delete product success'})
+                   } else {
+                       res.send({status:400, mess: 'delete product fail'})
+                   }});
+           }else {
+               res.send({status:400, mess: 'delete product fail'})
+           }
+       }
+       handleRequest()
     }
 
 }

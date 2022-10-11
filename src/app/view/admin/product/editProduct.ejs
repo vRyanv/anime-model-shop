@@ -6,37 +6,43 @@
         <input type="hidden" value="<%= pro[0].pro_id %>" name="proId">
         <div class="mb-3">
             <label for="pro_name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="pro_name" placeholder="product name" name="proName" value="<%= pro[0].pro_name %>">
+            <input type="text" class="form-control" id="pro_name" placeholder="product name" name="proName" value="<%= pro[0].pro_name %>" style="display: inline-block">
+            <span id="empty_name" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none; position: absolute; margin-left: 1rem"></span>
         </div>
         <div class="mb-3">
             <label for="pro_name" class="form-label">Category</label>
-            <select class="form-control" name="proCate" id="">
+            <select class="form-control" name="proCate" id="" style="display: inline-block">
                 <% for (let i=0;i < cateList.length;i++) {%>
                     <option value="<%= cateList[i].cate_id %>" <%if(cateList[i].sup_id === pro[0].cate_id){%>selected<%}%> ><%= cateList[i].cate_name %></option>
                 <% }%>
             </select>
+            <span id="empty_cate" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none; position: absolute; margin-left: 1rem"></span>
         </div>
         <div class="mb-3">
             <label for="pro_name" class="form-label">Supplier</label>
-            <select class="form-control" name="proSup" id="">
+            <select class="form-control" name="proSup" id="" style="display: inline-block">
                 <% for (let i=0;i < supList.length;i++) {%>
                     <option value="<%= supList[i].sup_id %>" <%if(supList[i].sup_id === pro[0].sup_id){%>selected<%}%> ><%= supList[i].sup_name %></option>
                 <% }%>
             </select>
+            <span id="empty_sup" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none; position: absolute; margin-left: 1rem"></span>
         </div>
         <div class="mb-3">
             <label for="pro_name" class="form-label">Price</label>
-            <input type="number"  name="proPrice"class="form-control" id="pro_name" placeholder="product price" value="<%= pro[0].pro_price.substring(1) %>">
+            <input type="number"  name="proPrice"class="form-control" id="pro_price" placeholder="product price" value="<%= pro[0].pro_price.substring(1) %>" style="display: inline-block">
+            <span id="empty_price" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none; position: absolute; margin-left: 1rem"></span>
         </div>
         <div class="mb-3">
             <label for="pro_name" class="form-label">Inventory</label>
-            <input type="number" class="form-control" id="pro_name" name="inventory" placeholder="inventory" value="<%= pro[0].inventory %>">
+            <input type="number" class="form-control" id="pro_quantity" name="inventory" placeholder="inventory" value="<%= pro[0].inventory %>" style="display: inline-block">
+            <span id="empty_quantity" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none; position: absolute; margin-left: 1rem"></span>
         </div>
         <div class="mb-3">
             <label for="img_preview" class="form-label">Image</label>
             <div style="display: block">
                 <img src="/images/product/<%= pro[0].pro_image %>" alt="..." class="img-thumbnail" id="img_preview" style="width: 13rem;">
             </div>
+            <span id="empty_img" class="bi-x-circle-fill" style="vertical-align: -webkit-baseline-middle; color: red; display: none"></span>
             <input type="file" name="proImage" id="pro_img" hidden>
             <button type="button" class="btn btn-primary mt-3" id="btn_open_dialog_image">Choose image</button>
         </div>

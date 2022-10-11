@@ -13,12 +13,13 @@ module.exports = multer({
     fileFilter: function (req, file, cb){
         if (file.mimetype === 'image/png'|| file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg')
         {
-            cb(null, true);
+            req.hasImg = true
+            cb(null, true)
         }
         else
         {
             req.errorUpload = 'invalid image'
-            return cb(null, false, new Error('goes wrong on the mimetype'));
+            return cb(null, false, new Error('goes wrong on the mimetype'))
         }
     }
 })
