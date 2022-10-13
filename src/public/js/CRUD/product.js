@@ -169,9 +169,9 @@ $(document).ready(function (){
             for (let i = 0;i < product.length;i++)
             {
                 let html = `<div class="card" style="width: 18rem; margin-right: 1.5rem; margin-top: 2rem;display: inline-block">
-                            <img src="/images/product/${product[i].pro_image}" class="card-img-top" alt="...">
+                            <img src="/images/product/${product[i].pro_image}" class="card-img-top" alt="..." style="height: 18rem">
                             <div class="card-body">
-                            <h5 class="card-title">${product[i].pro_name}</h5>
+                            <h5 class="card-title" style="color: rgb(102, 95, 170);font-size: 1.7rem;">${product[i].pro_name}</h5>
                             <h5 class="card-title">Price: ${product[i].pro_price}</h5>
                             <h5 class="card-title">Inventory: ${product[i].inventory}</h5>
                             <h5 class="card-title">Category: ${product[i].cate_name}</h5>

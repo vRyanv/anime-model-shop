@@ -13,7 +13,7 @@ class SiteController{
 
     logout(req, res)
     {
-        res.cookie('__token_user', null)
+        res.cookie('__token_user', '')
         res.redirect('/login')
     }
 
@@ -52,20 +52,12 @@ class SiteController{
         res.render('client/contact.ejs', {page:'contact', login:req.login})
     }
 
-    profile(req, res)
-    {
-        req.login ? res.render('client/profile.ejs', {page:'profile', login:req.login}) : res.redirect('/login')
-    }
 
     cart(req, res)
     {
         res.render('client/cart.ejs', {page:'cart', login:req.login})
     }
 
-    profile(req, res)
-    {
-        res.render('client/profile.ejs', {page:'profile', login:req.login})
-    }
 
 }
 

@@ -4,11 +4,12 @@ const cartController = require('../app/controller/CartController')
 const authentication = require("../middleware/authentication");
 
 
-route.get('/', (req, res, next) => authentication.checkCookieCustomer(req, res, next),cartController.getCart)
-route.put('/update-quantity-product-cart', (req, res, next) => authentication.checkCookieCustomer(req, res, next),cartController.addQuantityProductCart)
-route.delete('/delete-product-cart', (req, res, next) => authentication.checkCookieCustomer(req, res, next),cartController.deleteProductCart)
-route.post('/place-order', (req, res, next) => authentication.checkCookieCustomer(req, res, next),cartController.placeOrder)
-route.get('/oldOrder', (req, res, next) => authentication.checkCookieCustomer(req, res, next),cartController.getOldOrder)
+route.get('/',authentication.checkCookieCustomer, cartController.getCart)
+route.post('/add', authentication.checkCookieCustomer, cartController.addProToCart)
+route.put('/update-quantity-product-cart', authentication.checkCookieCustomer, cartController.addQuantityProductCart)
+route.delete('/delete-product-cart', authentication.checkCookieCustomer, cartController.deleteProductCart)
+route.post('/place-order', authentication.checkCookieCustomer, cartController.placeOrder)
+route.get('/oldOrder', authentication.checkCookieCustomer, cartController.getOldOrder)
 
 
 module.exports = route

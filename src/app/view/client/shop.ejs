@@ -17,10 +17,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/assets/css/magnific-popup.css" rel="stylesheet">
-        <link href="/assets/css/owl.carousel.css" rel="stylesheet">
-        <link href="/assets/css/owl.carousel.theme.min.css" rel="stylesheet">
-        <link href="/assets/css/ionicons.css" rel="stylesheet">
         <link href="/assets/css/main.css" rel="stylesheet">
         <link href="/assets/css/loadingAnimation.css" rel="stylesheet">
 
@@ -55,7 +51,7 @@
         </div>
     <!--    animation loading-->
     <!--    cart-->
-    <a href="/cart"><i class="bi-cart3 cart"><span>10</span></i></a>
+    <a href="/cart"><i class="bi-cart3 cart"><span id="number_product_cart">0</span></i></a>
     <!--    cart-->
     <!-- Shop -->
         <section class="shop">
@@ -70,9 +66,9 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-1"></div>
-                    <div class="col-sm-1"><div style="display: inline-block">Category</div></div>
+                    <div class="col-sm-1"><div style="display: inline-block; font-size: large">Category</div></div>
                     <div class="col-sm-4">
-                        <select class="form-select form-select-lg mb-3" id="cate_select" aria-label="Default select example" style="display: inline-block">
+                        <select class="form-select form-select-lg mb-3" id="cate_select" aria-label="Default select example" style="display: inline-block; font-size: 1.5rem">
                             <option value="all">all</option>
                         </select>
                     </div>
@@ -93,45 +89,22 @@
                 <div class="row">
                     <div class="boxed">
                         <% for(let i=0;i<proList.length;i++){ %>
-                            <div class="col-sm-6">
-                                <div class="shop-box">
-                                    <img class="img-full img-responsive" src="/images/product/<%= proList[i].pro_image %>" alt="shop">
-                                    <div class="shop-box-hover text-center">
-                                        <div class="c-table">
-                                            <div class="c-cell">
-                                                <div>
-                                                    <span class="ion-ios-cart"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="shop-box-title">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <h4><%= proList[i].pro_name %></h4>
-                                            <h4>Category: <span class="thin"><%= proList[i].cate_name %></span></h4>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <p class="shop-price" style="font-size: larger">
-                                                <%= proList[i].pro_price %>
-                                            </p>
-                                        </div>
+                            <div class="card" style="width: 22rem; margin-right: 1.5rem; margin-top: 2rem;display: inline-block">
+                                <img src="/images/product/<%= proList[i].pro_image %>" class="card-img-top" alt="..." style="height: 18rem">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="color: rgb(102, 95, 170); font-size: 1.7rem;"><%= proList[i].pro_name %></h5>
+                                    <h5 class="card-title">Price: <%= proList[i].pro_price %></h5>
+                                    <h5 class="card-title">Inventory: <%= proList[i].inventory %></h5>
+                                    <h5 class="card-title">Category: <%= proList[i].cate_name %></h5>
+                                    <h5 class="card-title">Supplier: <%= proList[i].sup_name %></h5>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-add-cart btn-robot" data-pro-id="<%= proList[i].pro_id %>">add Cart</button>
                                     </div>
                                 </div>
                             </div>
                         <%}%>
                     </div>
                     <div class="col-sm-12">
-                            <nav>
-                                <ul class="pager">
-                                    <li class="previous disabled"><a href="#"><span aria-hidden="true" class="ion-chevron-left"></span></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li class="next"><a href="#"><span aria-hidden="true" class="ion-chevron-right"></span></a></li>
-                                </ul>
-                            </nav>
                     </div>
                     </div>
                 </div>
@@ -199,9 +172,6 @@
     <!-- Scripts -->
         <script src="/assets/js/jquery-1.12.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
-        <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="/assets/js/owl.carousel.min.js"></script>
-        <script src="/assets/js/script.js"></script>
-
+        <script src="/js/client/shopping.js"></script>
     </body>
 </html>

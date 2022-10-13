@@ -5,5 +5,6 @@ const database = require('../src/config/database/connect')
 //     .then(result => console.log(result.rows))
 // database.query("select shop_id from users where user_id = 12")
 //     .then((result) => console.log(result.rows[0].shop_id))
-database.query('select * from orderdetail')
-    .then((result) => console.log(result))
+database.query('select * from users')
+    .then((result) =>
+    {console.log(result.rows)})

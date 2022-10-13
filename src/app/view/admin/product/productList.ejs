@@ -5,7 +5,8 @@
             <div class="d-flex" id="search_box_product" role="search">
                 <input class="form-control me-2" id="txt_search_pro" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" id="btn_search_product">Search</button>
-                <a href="/product/add"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_product_model" style="width: 8rem;margin-left: 2rem">New product</button></a>
+                <a href="/product/add"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#new_product_model" style="width: 8rem;margin-left: 2rem">New product</button></a>
+                <a href="/product" style="margin-left: 3rem"><button class="btn btn-primary">Refresh</button></a>
             </div>
             </div>
         </div>
@@ -14,9 +15,9 @@
 <div style="padding-top: 3rem; padding-bottom: 1rem" id="container_pro_list">
     <% for (let i = 0; i < proList.length; i++){ %>
         <div class="card" style="width: 18rem; margin-right: 1.5rem; margin-top: 2rem;display: inline-block">
-            <img src="/images/product/<%= proList[i].pro_image %>" class="card-img-top" alt="...">
+            <img src="/images/product/<%= proList[i].pro_image %>" class="card-img-top" alt="..." style="height: 18rem">
             <div class="card-body">
-                <h5 class="card-title"><%= proList[i].pro_name %></h5>
+                <h5 class="card-title" style="color: rgb(102, 95, 170); font-size: 1.7rem;"><%= proList[i].pro_name %></h5>
                 <h5 class="card-title">Price: <%= proList[i].pro_price %></h5>
                 <h5 class="card-title">Inventory: <%= proList[i].inventory %></h5>
                 <h5 class="card-title">Category: <%= proList[i].cate_name %></h5>

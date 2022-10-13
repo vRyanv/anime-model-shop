@@ -3,6 +3,13 @@ const database = require('../../config/database/connect')
 
 class ProductModel
 {
+    getProPrice(proId){
+        return database.query(`select pro_price from product where pro_id = ${proId}`)
+            .then((result) => {
+                return result.rows[0].pro_price
+            })
+    }
+
     searchPro(userId, proName) {
         return database.query(`select p.pro_id,
                                       c.cate_name,
@@ -44,6 +51,7 @@ class ProductModel
     getProForCustomer() {
         return database.query(`select p.pro_id,
                                       c.cate_name,
+                                      sp.sup_name,
                                       s.shop_name,
                                       p.pro_name,
                                       p.pro_image,
@@ -51,9 +59,11 @@ class ProductModel
                                       p.inventory
                                from product as p,
                                     category as c,
-                                    shop as s
+                                    shop as s,
+                                    supplier as sp
                                where c.cate_id = p.cate_id
-                                 and p.shop_id = s.shop_id`)
+                                 and p.shop_id = s.shop_id
+                                 and p.sup_id = sp.sup_id`)
             .then((result) => {
                 return result.rows
             })
@@ -81,10 +91,12 @@ class ProductModel
     }
 
     add(userId, product) {
+        console.log('user id'+userId)
         const processAdd = async () => {
             const shopId = await database.query(`select shop_id
                                                  from users
                                                  where user_id = ${userId}`)
+            console.log(shopId)
             const result = await database.query(`insert into product(cate_id, shop_id, sup_id, pro_name, pro_image, pro_price, inventory)
                                                  values (${product.cateId}, ${shopId.rows[0].shop_id}, ${product.supId},
                                                          '${product.proName}', '${product.proImage}',

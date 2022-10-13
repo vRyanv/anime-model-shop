@@ -131,6 +131,7 @@ class ProductController{
        const handleRequest = async () =>{
            const deleteImg = await productModel.findPro(req.body.proId)
            const result = await productModel.delete(req.body.proId)
+           console.log()
            if(result){
                unlink('src/public/images/product/'+deleteImg[0].pro_image, (err) => {
                    if (!err || err.errno === -4058){
