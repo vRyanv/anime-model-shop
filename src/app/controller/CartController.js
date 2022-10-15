@@ -37,10 +37,16 @@ class CartController{
         res.send('getOldOrder')
     }
 
-    addQuantityProductCart(req, res)
+    increaseQuantity(req, res)
     {
         res.send('add quantity')
     }
+
+    reduceQuantity(req, res){
+        let proId = req.body.proId
+    }
+
+
 
     deleteProductCart(req, res)
     {

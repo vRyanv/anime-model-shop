@@ -34,11 +34,6 @@ $(document).ready(function (){
         }
     })
 
-    $('#shop_name').click(function (){
-
-    })
-
-
     function animationLogin()
     {
         if($('.canvas-animation').css('display') == 'none')
@@ -65,4 +60,5 @@ $(document).ready(function (){
         }
         return isValidate
     }
+
 })

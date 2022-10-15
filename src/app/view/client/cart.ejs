@@ -58,12 +58,12 @@
                             <td><%= cartList[i].pro_price %></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-secondary" data-pro-id="<%= cartList[i].pro_id %>">-</button>
-                                    <input type="text" style="text-align: center; vertical-align: middle; width: 3rem; border: none" value="<%= cartList[i].quantity %>" readonly>
-                                    <button type="button" class="btn btn-info" data-pro-id="<%= cartList[i].pro_id %>">+</button>
+                                    <button type="button" class="btn btn-secondary" id="btn_reduce" data-pro-id="<%= cartList[i].pro_id %>">-</button>
+                                    <input id="quantity_pro_<%= cartList[i].pro_id %>" type="text" style="text-align: center; vertical-align: middle; width: 3rem; border: none" value="<%= cartList[i].quantity %>" readonly>
+                                    <button type="button" class="btn btn-info " id="btn_increase" data-pro-id="<%= cartList[i].pro_id %>">+</button>
                                 </div>
                             </td>
-                            <td><%= cartList[i].price %></td>
+                            <td id="total_price_<%= cartList[i].pro_id %>"><%= cartList[i].price %></td>
                             <td>
                                 <button type="button" class="btn btn-warning" data-pro-id="<%= cartList[i].pro_id %>">Delete</button>
                             </td>

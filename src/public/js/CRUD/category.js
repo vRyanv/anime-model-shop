@@ -64,7 +64,7 @@ $(document).ready(function (){
                     else
                     {
                         animationLogin()
-                        alert('something wrong! delete fail')
+                        alert('something wrong! '+ data.mess)
                     }
                 }
             })

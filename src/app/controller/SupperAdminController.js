@@ -58,6 +58,7 @@ class SupperAdminController{
         })
     }
 
+
     staffManagement(req, res)
     {
         database.query(`select user_id, fullname , phone, shop.shop_name from users, shop where shop.shop_id = users.shop_id`)
@@ -100,10 +101,8 @@ class SupperAdminController{
     {
         database.query(`select * from users where user_id = '${req.params.userId}'`)
             .then((staff) => {
-
                 database.query(`select * from shop`)
                     .then((shop) => {
-                        console.log(staff.rows)
                         res.render('admin/dashboard', {staff: staff.rows, shopList:shop.rows, page:'staffManagement', type: 'edit', role: req.userRole})
                 })
             })
@@ -111,10 +110,12 @@ class SupperAdminController{
 
     editStaffProcess(req, res)
     {
+        let fullname = req.body.fullName
+        let phone = req.body.phone
         let ownerShop = req.body.ownerShop
-        let userId = req.body.userId
+        let userId = req.userId
 
-        database.query(`update users set shop_id = '${ownerShop}' where user_id = ${userId}`)
+        database.query(`update users set shop_id = '${ownerShop}', fullname = '${fullname}', phone = '${phone}'  where user_id = ${userId}`)
             .then((result) => {
                 if(result.rowCount !== 0)
                 {

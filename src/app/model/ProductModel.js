@@ -4,6 +4,7 @@ const database = require('../../config/database/connect')
 class ProductModel
 {
     getProForCustomerFollowCate(cateId) {
+        console.log(cateId)
         return database.query(`select p.pro_id,
                                       c.cate_name,
                                       sp.sup_name,

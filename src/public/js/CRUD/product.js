@@ -175,7 +175,7 @@ $(document).ready(function (){
                             <h5 class="card-title">Price: ${product[i].pro_price}</h5>
                             <h5 class="card-title">Inventory: ${product[i].inventory}</h5>
                             <h5 class="card-title">Category: ${product[i].cate_name}</h5>
-                            <h5 class="card-title">Supplier: ${product[i].pro_sup}</h5>
+                            <h5 class="card-title">Supplier: ${product[i].sup_name}</h5>
                             <div class="btn-group" role="group" aria-label="Basic example">
                             <a href="/product/edit/${product[i].pro_id}"><button type="button" class="btn btn-primary">Update</button></a>
                             <button type="button" class="btn btn-danger btn-delete-product" data-pro-id="${product[i].pro_id}">Delete</button>

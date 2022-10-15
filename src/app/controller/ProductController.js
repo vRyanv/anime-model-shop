@@ -7,12 +7,15 @@ class ProductController{
 
     clientGetProFollowCate(req, res){
         let cateId = req.params.id
+        console.log(cateId)
         if(cateId === 'all'){
             productModel.getProForCustomer().then((result) => {
+                console.log(result)
                 res.send({status:200, proList: result})
             })
         } else {
             productModel.getProForCustomerFollowCate(cateId).then((result) => {
+                console.log(result)
                 res.send({status:200, proList: result})
             })
         }
@@ -35,6 +38,7 @@ class ProductController{
         productModel.searchPro(req.userId, req.params.name)
             .then((pro) => {
                 if(pro.length !== 0){
+                    console.log(pro)
                     res.send({status:200,pro})
                 } else {
                     res.send({status:404, mess: 'Not found'})

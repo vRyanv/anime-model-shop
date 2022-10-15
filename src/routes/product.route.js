@@ -8,8 +8,9 @@ const upload = require("../middleware/storage");
 route.get('/add', authentication.checkCookieAdmin, productController.getAdd)
 route.get('/edit/:id', authentication.checkCookieAdmin, productController.getEdit)
 route.get('/', authentication.checkCookieAdmin, productController.getProductList)
-route.get('/category/:id', authentication.checkCookieAdmin, productController.clientGetProFollowCate)
 route.get('/search/:name',  authentication.checkCookieAdmin, productController.searchPro)
+
+route.get('/category-filter/:id', productController.clientGetProFollowCate)
 route.get('/client-search/:name', productController.clientSearchPro)
 
 // CRUD

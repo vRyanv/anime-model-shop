@@ -24,10 +24,6 @@ class ShopModel{
             })
     }
 
-    delete(){
-
-    }
-
 }
 
 module.exports = new ShopModel

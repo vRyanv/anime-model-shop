@@ -58,7 +58,7 @@ $(document).ready(function (){
         },
         filterCategory: function (cateId){
             $.ajax({
-                url:'/product/category/'+cateId,
+                url:'/product/category-filter/'+cateId,
                 type: 'GET',
                 beforeSend: appShopping.animation(),
                 success: function (data){

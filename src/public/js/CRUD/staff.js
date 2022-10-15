@@ -28,6 +28,34 @@ $(document).ready(function (){
         }
     })
 
+    $('#btn_submit_edit_staff').click(function (){
+        if(validate()) {
+            let username = $('#txt_username').val()
+            let pass = $('#txt_password').val()
+            let fullName = $('#txt_full_name').val()
+            let phone = $('#txt_phone').val()
+            let ownerShop = $('#owner_shop').val()
+
+            $.ajax({
+                url: '/supper-admin/staff/edit',
+                type: 'POST',
+                data: {username, pass, fullName, phone, ownerShop},
+                beforeSend: animationLogin(),
+                success: function (data){
+                    if(data.status === 200)
+                    {
+                        location.href = '/supper-admin/staff/management'
+                    }
+                    else
+                    {
+                        animationLogin()
+                        alert('Something wrong! edit fail')
+                    }
+                }
+            })
+        }
+    })
+
     function animationLogin()
     {
         if($('.canvas-animation').css('display') == 'none')

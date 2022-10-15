@@ -4,11 +4,11 @@
 <div class="add-form mt-5 col-sm-11">
     <div class="mb-3">
         <label for="txt_full_name" class="form-label">Full name</label>
-        <input type="text" class="form-control" id="txt_full_name" name="fullName" placeholder="full name" value="<%= staff[0].fullname %>" readonly>
+        <input type="text" class="form-control" id="txt_full_name" name="fullName" placeholder="full name" value="<%= staff[0].fullname %>">
     </div>
     <div class="mb-3">
         <label for="txt_phone" class="form-label">Phone</label>
-        <input type="text" class="form-control" id="txt_phone" name="phone" placeholder="phone" value="<%= staff[0].phone %>" readonly>
+        <input type="text" class="form-control" id="txt_phone" name="phone" placeholder="phone" value="<%= staff[0].phone %>">
     </div>
     <div class="mb-3">
         <label for="txt_phone" class="form-label">Owner shop</label>
@@ -19,7 +19,7 @@
         </select>
     </div>
     <div style="text-align: end">
-        <input type="submit" class="btn btn-success" value="Update" id="btn_submit_add_staff">
+        <input type="submit" class="btn btn-success" value="Update" id="btn_submit_edit_staff">
         <a href="/supper-admin/shop/management"><input type="button" class="btn btn-warning" value="cancel"></a>
     </div>
 </div>
