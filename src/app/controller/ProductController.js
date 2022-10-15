@@ -5,6 +5,31 @@ const {unlink} = require('node:fs')
 
 class ProductController{
 
+    clientGetProFollowCate(req, res){
+        let cateId = req.params.id
+        if(cateId === 'all'){
+            productModel.getProForCustomer().then((result) => {
+                res.send({status:200, proList: result})
+            })
+        } else {
+            productModel.getProForCustomerFollowCate(cateId).then((result) => {
+                res.send({status:200, proList: result})
+            })
+        }
+    }
+
+    clientSearchPro(req, res){
+        let proName = req.params.name
+        productModel.getClientSearchPro(proName).then((result) => {
+            if(result.rowCount !== 0){
+                console.log(result)
+                res.send({status: 200, proList: result})
+            } else {
+                res.send({status: 404, mess: 'Not found'})
+            }
+        })
+    }
+
     searchPro(req, res)
     {
         productModel.searchPro(req.userId, req.params.name)

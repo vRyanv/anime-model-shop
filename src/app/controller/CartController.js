@@ -22,11 +22,7 @@ class CartController{
                 res.send({status:400, mess: 'product is exist in cart'})
             }
         }
-        // handleAddToCart()
-        setTimeout(function (){
-            res.send({status:200, mess: 'cc'})
-            }
-        , 3000)
+        handleAddToCart()
     }
 
     getCart(req, res)

@@ -7,6 +7,8 @@ const authentication = require("../middleware/authentication")
 route.get('/shop/management', authentication.checkCookieAdmin, supperAdminController.shopManagement)
 route.get('/shop/add', authentication.checkCookieAdmin, supperAdminController.addShop)
 route.post('/shop/add', authentication.checkCookieAdmin, supperAdminController.addShopProcess)
+route.get('/shop/edit/:id', authentication.checkCookieAdmin, supperAdminController.editShop)
+route.post('/shop/edit/', authentication.checkCookieAdmin, supperAdminController.editShopProcess)
 
 //staff
 route.get('/staff/management', authentication.checkCookieAdmin,supperAdminController.staffManagement)

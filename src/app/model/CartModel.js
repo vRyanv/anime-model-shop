@@ -18,8 +18,22 @@ class CartModel{
         return database.query(`select pro_id from orderdetail where order_id = ${orderId} and pro_id = ${proId}`)
     }
 
-    getProDuctInCart(orderId){
-        return database.query(`select * from orderdetail where order_id = ${orderId}`)
+    getProDuctInCart(orderId) {
+        return database.query(`select p.pro_id,
+                                      p.pro_image,
+                                      p.pro_name,
+                                      p.pro_price,
+                                      od.quantity,
+                                      od.price,
+                                      od.orderdetail_id
+                               from orderdetail as od, product as p
+                               where order_id = ${orderId} and p.pro_id = od.pro_id`)
+    }
+
+    getQuantityProInCart(orderId){
+        return database.query(`select orderdetail_id from orderdetail  
+                                where order_id = ${orderId}`)
+
     }
 
 }

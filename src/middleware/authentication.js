@@ -36,7 +36,7 @@ class Authentication
                     userInfor.orderId = cart.rows[0].order_id
                     createToken(userInfor)
                 } else {
-                    const newCart = await cart.createCart(userId)
+                    const newCart = await cartModel.createCart(userId)
                     if(newCart.rowCount !== 0){
                         userInfor.userId = userId
                         userInfor.role = user.rows[0].role

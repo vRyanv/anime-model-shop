@@ -3,6 +3,50 @@ const database = require('../../config/database/connect')
 
 class ProductModel
 {
+    getProForCustomerFollowCate(cateId) {
+        return database.query(`select p.pro_id,
+                                      c.cate_name,
+                                      sp.sup_name,
+                                      s.shop_name,
+                                      p.pro_name,
+                                      p.pro_image,
+                                      p.pro_price,
+                                      p.inventory
+                               from product as p,
+                                    category as c,
+                                    supplier as sp,
+                                    shop as s
+                               where c.cate_id = p.cate_id
+                                 and p.shop_id = s.shop_id
+                                 and p.sup_id = sp.sup_id
+                                 and c.cate_id = ${cateId}`)
+            .then((result) => {
+                return result.rows
+            })
+    }
+
+    getClientSearchPro(proName){
+        return database.query(`select p.pro_id,
+                                      c.cate_name,
+                                      sp.sup_name,
+                                      s.shop_name,
+                                      p.pro_name,
+                                      p.pro_image,
+                                      p.pro_price,
+                                      p.inventory
+                               from product as p,
+                                    category as c,
+                                    supplier as sp,
+                                    shop as s
+                               where c.cate_id = p.cate_id
+                                 and p.sup_id = sp.sup_id
+                                 and p.shop_id = s.shop_id
+                                 and p.pro_name like '%${proName}%'`)
+            .then((result) => {
+                return result.rows
+            })
+    }
+
     getProPrice(proId){
         return database.query(`select pro_price from product where pro_id = ${proId}`)
             .then((result) => {
@@ -59,8 +103,8 @@ class ProductModel
                                       p.inventory
                                from product as p,
                                     category as c,
-                                    shop as s,
-                                    supplier as sp
+                                    supplier as sp,
+                                    shop as s
                                where c.cate_id = p.cate_id
                                  and p.shop_id = s.shop_id
                                  and p.sup_id = sp.sup_id`)

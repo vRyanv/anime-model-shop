@@ -1,4 +1,7 @@
 const productModel = require('../model/ProductModel')
+const cartModel = require('../model/CartModel')
+const cateModel = require('../model/CategoryModel')
+
 class SiteController{
 
     login(req, res)
@@ -42,7 +45,9 @@ class SiteController{
     {
         const handleRequest = async() => {
             const proList = await productModel.getProForCustomer()
-            res.render('client/shop.ejs', {proList, page:'shop', login:req.login})
+            const cateList = await cateModel.getCateList()
+            const quantityProInCart = await cartModel.getQuantityProInCart(req.cartId)
+            res.render('client/shop.ejs', {proList, cateList,quantity: quantityProInCart.rowCount, page:'shop', login:req.login})
         }
         handleRequest()
     }

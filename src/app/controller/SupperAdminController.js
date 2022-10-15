@@ -1,4 +1,6 @@
 const database = require('../../config/database/connect')
+const shopModel = require('../model/ShopModel')
+
 class SupperAdminController{
 
     statistical(req, res)
@@ -21,21 +23,39 @@ class SupperAdminController{
 
     addShopProcess(req, res)
     {
-        console.log(req.body)
        let shopName = req.body.shopName
        let shopAddress = req.body.shopAddress
-        database.query(`insert into shop(shop_name, shop_address) values('${shopName}', '${shopAddress}')`)
-            .then((result) => {
-                if(result.rowCount !== 0)
-                {
-                    console.log(result)
-                    res.send({status:200, mess:'add success'})
-                }
-                else
-                {
-                    res.send({status:400, mess:'add fail'})
-                }
-            })
+       shopModel.add(shopName, shopAddress).then((result) => {
+           if(result !== 0) {
+               res.send({status:200, mess:'add success'})
+           } else {
+               res.send({status:400, mess:'add fail'})
+           }
+       })
+    }
+
+    editShop(req, res){
+        let shopId = req.params.id
+        shopModel.getEdit(shopId).then((result) =>{
+            if(result.length !== 0){
+                res.render('admin/dashboard',{shop:result, page: 'shopManagement', type: 'edit', role:req.userRole})
+            } else {
+                res.render('admin/404page.ejs')
+            }
+        })
+    }
+
+    editShopProcess(req, res){
+        let shopId = req.body.shopId
+        let shopName = req.body.shopName
+        let shopAddress = req.body.shopAddress
+        shopModel.edit(shopId, shopName, shopAddress).then((result) => {
+            if(result !== 0){
+                res.send({status:200, mess: 'update shop success'})
+            } else {
+                res.send({status:400, mess: 'update shop fail'})
+            }
+        })
     }
 
     staffManagement(req, res)

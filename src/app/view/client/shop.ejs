@@ -51,7 +51,7 @@
         </div>
     <!--    animation loading-->
     <!--    cart-->
-    <a href="/cart"><i class="bi-cart3 cart"><span id="number_product_cart">0</span></i></a>
+    <a href="/cart"><i class="bi-cart3 cart"><span id="number_product_cart"><%= quantity %></span></i></a>
     <!--    cart-->
     <!-- Shop -->
         <section class="shop">
@@ -70,15 +70,18 @@
                     <div class="col-sm-4">
                         <select class="form-select form-select-lg mb-3" id="cate_select" aria-label="Default select example" style="display: inline-block; font-size: 1.5rem">
                             <option value="all">all</option>
+                            <% for (let i=0; i<cateList.length;i++){%>
+                                <option value="<%= cateList[i].cate_id %>"><%= cateList[i].cate_name %></option>
+                            <%}%>
                         </select>
                     </div>
                     <div class="col-sm-1">
                     </div>
                     <div class="col-sm-4 text-right">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" id="txt_search_name" placeholder="product name">
                                 <span class="input-group-btn" style="transform: translateY(-15px);">
-                                    <button class="btn btn-default btn-robot" type="button">Search</button>
+                                    <button class="btn btn-default btn-robot btn-search-pro" type="button">Search</button>
                                 </span>
                             </div><!-- /input-group -->
                     </div>
@@ -97,6 +100,7 @@
                                     <h5 class="card-title">Inventory: <%= proList[i].inventory %></h5>
                                     <h5 class="card-title">Category: <%= proList[i].cate_name %></h5>
                                     <h5 class="card-title">Supplier: <%= proList[i].sup_name %></h5>
+                                    <h5 class="card-title">shop: <%= proList[i].shop_name %></h5>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-add-cart btn-robot" data-pro-id="<%= proList[i].pro_id %>">add Cart</button>
                                     </div>
