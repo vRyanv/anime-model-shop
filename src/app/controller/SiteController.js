@@ -43,13 +43,23 @@ class SiteController{
 
     shop(req, res)
     {
-        const handleRequest = async() => {
-            const proList = await productModel.getProForCustomer()
-            const cateList = await cateModel.getCateList()
-            const quantityProInCart = await cartModel.getQuantityProInCart(req.cartId)
-            res.render('client/shop.ejs', {proList, cateList,quantity: quantityProInCart.rowCount, page:'shop', login:req.login})
+        if(req.login){
+            const handleRequest = async() => {
+                const proList = await productModel.getProForCustomer()
+                const cateList = await cateModel.getCateList()
+                const quantityProInCart = await cartModel.getQuantityProInCart(req.cartId)
+                res.render('client/shop.ejs', {proList, cateList,quantity: quantityProInCart.rowCount, page:'shop', login:req.login})
+            }
+            handleRequest()
+        } else {
+            const handleRequest = async() => {
+                const proList = await productModel.getProForCustomer()
+                const cateList = await cateModel.getCateList()
+                res.render('client/shop.ejs', {proList, cateList, page:'shop', login:req.login})
+            }
+            handleRequest()
         }
-        handleRequest()
+
     }
 
     contact(req, res)

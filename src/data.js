@@ -20,7 +20,11 @@ const {query} = require("express");
 //         price = parseFloat(price.substring(1))
 //         console.log(price)
 //     })
-database.query(`select * from orders`)
+// database.query(`select * from orders`)
+//     .then((result) => {
+//         console.log(result.rows)
+//     })
+database.query(`insert into orders(user_id, status) values (14, '0') returning *`)
     .then((result) => {
         console.log(result.rows)
     })

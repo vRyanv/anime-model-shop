@@ -11,7 +11,7 @@ route.put('/reduce-product-cart', authentication.checkCookieCustomer, cartContro
 route.delete('/delete-product-cart', authentication.checkCookieCustomer, cartController.deleteProductCart)
 route.get('/get-order-info', authentication.checkCookieCustomer, cartController.getOrderInfo)
 route.post('/place-order', authentication.checkCookieCustomer, cartController.placeOrder)
-route.get('/oldOrder', authentication.checkCookieCustomer, cartController.getOldOrder)
+route.get('/old-order', authentication.checkCookieCustomer, cartController.getOldOrder)
 
 
 module.exports = route

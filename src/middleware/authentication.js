@@ -75,6 +75,7 @@ class Authentication
         try{
             let token = req.cookies.__token_user
             let decode = jwt.verify(token, tokenKey)
+
             req.userId = decode.userId
             req.cartId = decode.orderId
             req.login = true
@@ -82,6 +83,19 @@ class Authentication
         }catch (error){
             req.login = false
             next()
+        }
+    }
+
+    signAgainToken(userId, orderId, res){
+        try {
+            res.cookie(tokenName, jwt.sign({
+                orderId,
+                userId,
+                userRole: '0'
+            }, tokenKey))
+            return true
+        } catch (err){
+            return false
         }
     }
 

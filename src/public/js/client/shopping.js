@@ -79,6 +79,9 @@ $(document).ready(function (){
                         var numPro = $('#number_product_cart').html()
                         $('#number_product_cart').html(parseInt(numPro) + 1)
                         appShopping.animation()
+                    } else if(data.status === 401) {
+                        appShopping.animation()
+                        location.href = '/login'
                     } else {
                         appShopping.animation()
                     }

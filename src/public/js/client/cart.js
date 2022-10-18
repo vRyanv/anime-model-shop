@@ -36,8 +36,16 @@ $(document).ready(function (){
                 beforeSend: appCart.animation(),
                 data: {proId, orderDetailId},
                 success: function (data){
-                    appCart.updateInfoPro(data.product)
-                    appCart.animation()
+                    if(data.status === 200){
+                        appCart.updateInfoPro(data.product)
+                        appCart.animation()
+                    } else if (data.status === 401) {
+                        appCart.animation()
+                        location.href = '/login'
+                    } else {
+                        appCart.animation()
+                        alert('something wrong!')
+                    }
                 }
             })
         },
@@ -48,8 +56,16 @@ $(document).ready(function (){
                 beforeSend: appCart.animation(),
                 data: {proId, orderDetailId},
                 success: function (data){
-                    appCart.updateInfoPro(data.product)
-                    appCart.animation()
+                    if(data.status === 200){
+                        appCart.updateInfoPro(data.product)
+                        appCart.animation()
+                    } else if (data.status === 401) {
+                        appCart.animation()
+                        location.href = '/login'
+                    } else {
+                        appCart.animation()
+                        alert('something wrong!')
+                    }
                 }
             })
         },
@@ -66,9 +82,11 @@ $(document).ready(function (){
                 success: function (data){
                     if(data.status === 200){
                         location.href = '/cart'
-                    } else {
+                    } else if(data.status === 401){
+                        location.href = '/login'
+                    }else {
                         appCart.animation()
-                        alert('Something wrong! '+ data.mess )
+                        alert('Something wrong! '+ data.mess)
                     }
                 },
                 error: function (){

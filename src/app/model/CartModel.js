@@ -89,6 +89,13 @@ class CartModel{
                 return result.rowCount
             })
     }
+
+    getOldOrder(userId){
+        return database.query(`select * from orders where status = '1' and user_id = ${userId}`)
+            .then((result) => {
+                return result.rows
+            })
+    }
 }
 
 module.exports = new CartModel
