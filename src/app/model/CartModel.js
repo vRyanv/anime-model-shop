@@ -1,4 +1,5 @@
 const database = require("../../config/database/connect");
+const {query} = require("express");
 
 class CartModel{
     getCart(userId){
@@ -26,16 +27,68 @@ class CartModel{
                                       od.quantity,
                                       od.price,
                                       od.orderdetail_id
-                               from orderdetail as od, product as p
-                               where order_id = ${orderId} and p.pro_id = od.pro_id`)
+                               from orderdetail as od, product as p, orders as o
+                               where od.order_id = ${orderId} 
+                               and p.pro_id = od.pro_id
+                               and od.order_id = o.order_id
+                               and o.status = '0'`)
     }
 
     getQuantityProInCart(orderId){
-        return database.query(`select orderdetail_id from orderdetail  
-                                where order_id = ${orderId}`)
+        return database.query(`select od.orderdetail_id from orderdetail as od, orders as o
+                                where od.order_id = ${orderId} and o.status = '0'
+                                and od.order_id = o.order_id`)
 
     }
 
+    updateProInforInCart(orderDetailId, quantity, totalPrice){
+        return database.query(`update orderdetail set quantity = ${quantity}, price = ${totalPrice}
+                                where orderdetail_id = ${orderDetailId} returning *`)
+            .then((result) => {
+                console.log(result)
+                return result.rows
+            })
+    }
+
+    getInfoProInCart(orderDetailId, proId){
+        return database.query(`select quantity, (select pro_price from product where pro_id = ${proId}) as pro_price 
+                            from orderdetail where orderdetail_id = ${orderDetailId}`)
+            .then((result) => {
+                return result.rows
+            })
+    }
+
+    deleteProductInCart(orderDetailId){
+        return database.query(`delete from orderdetail where orderdetail_id = ${orderDetailId}`)
+            .then((result) => {
+                return result.rowCount
+            })
+    }
+
+    getOrderInfo(orderId){
+        return database.query(`select * from orders where order_id = ${orderId}`)
+            .then((result) => {
+                return result.rows
+            })
+    }
+
+    getProTotalPrice(orderId){
+       return database.query(`select sum(price) as price from orderdetail where order_id = ${orderId}`)
+            .then((result) => {
+                return result.rows
+            })
+    }
+
+    placeOrder(orderInfo) {
+        return database.query(`update orders
+                               set order_date    = '${orderInfo.orderDate}',
+                                   delivery_date = '${orderInfo.deliveryDate}',
+                                   status = '1'
+                               where order_id = ${orderInfo.orderId}`)
+            .then((result) => {
+                return result.rowCount
+            })
+    }
 }
 
 module.exports = new CartModel

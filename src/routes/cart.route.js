@@ -9,6 +9,7 @@ route.post('/add', authentication.checkCookieCustomer, cartController.addProToCa
 route.put('/increase-product-cart', authentication.checkCookieCustomer, cartController.increaseQuantity)
 route.put('/reduce-product-cart', authentication.checkCookieCustomer, cartController.reduceQuantity)
 route.delete('/delete-product-cart', authentication.checkCookieCustomer, cartController.deleteProductCart)
+route.get('/get-order-info', authentication.checkCookieCustomer, cartController.getOrderInfo)
 route.post('/place-order', authentication.checkCookieCustomer, cartController.placeOrder)
 route.get('/oldOrder', authentication.checkCookieCustomer, cartController.getOldOrder)
 

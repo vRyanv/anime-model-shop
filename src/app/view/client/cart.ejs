@@ -21,12 +21,35 @@
     </div>
 </div>
 <!--    animation loading-->
+<!-- confirm delete model -->
+<button type="button" id="btn_show_confirm_delete" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" hidden>
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm delete</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="content_confirm_delete">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="btn_ok_delete" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- confirm delete model -->
 <div class="container">
     <div class="row">
         <div class="col-12" style="background-color: rgb(102, 95, 170); text-align: center">
             <h1 style="color: whitesmoke; display: inline-block; float: left">Cart</h1>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top: .5rem; float: right">
+            <button type="button" class="btn btn-success" id="btn_get_order" style="margin-top: .5rem; float: right">
                 Payment
+            </button>
+            <button type="button" class="btn btn-success" id="btn_open_order_tab" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top: .5rem; float: right" hidden>
             </button>
             <a href="/shop"><button type="button" class="btn btn-primary"  style="margin-top: .5rem; float: right; margin-right: 1rem">
                 Shop
@@ -58,14 +81,14 @@
                             <td><%= cartList[i].pro_price %></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-secondary" id="btn_reduce" data-pro-id="<%= cartList[i].pro_id %>">-</button>
+                                    <button type="button" class="btn btn-secondary btn-reduce" data-pro-id="<%= cartList[i].pro_id %>" data-order-detail-id="<%= cartList[i].orderdetail_id %>">-</button>
                                     <input id="quantity_pro_<%= cartList[i].pro_id %>" type="text" style="text-align: center; vertical-align: middle; width: 3rem; border: none" value="<%= cartList[i].quantity %>" readonly>
-                                    <button type="button" class="btn btn-info " id="btn_increase" data-pro-id="<%= cartList[i].pro_id %>">+</button>
+                                    <button type="button" class="btn btn-info btn-increase" data-pro-id="<%= cartList[i].pro_id %>" data-order-detail-id="<%= cartList[i].orderdetail_id %>">+</button>
                                 </div>
                             </td>
                             <td id="total_price_<%= cartList[i].pro_id %>"><%= cartList[i].price %></td>
                             <td>
-                                <button type="button" class="btn btn-warning" data-pro-id="<%= cartList[i].pro_id %>">Delete</button>
+                                <button type="button" class="btn btn-warning btn-delete-product" data-order-detail-id="<%= cartList[i].orderdetail_id %>">Delete</button>
                             </td>
                         </tr>
                     <% } %>
@@ -92,28 +115,36 @@
                         </thead>
                         <tbody>
                         <tr>
+                            <td><h6>Customer name</h6></td>
+                            <td id="cust_name">Customer name</td>
+                        </tr>
+                        <tr>
+                            <td><h6>Phone</h6></td>
+                            <td id="phone">Phone</td>
+                        </tr>
+                        <tr>
                             <td><h6>Order date</h6></td>
-                            <td>Order date</td>
+                            <td id="order_date">Order date</td>
                         </tr>
                         <tr>
                             <td><h6>Delivery date</h6></td>
-                            <td>Delivery date</td>
+                            <td id="deliver_date">Delivery date</td>
                         </tr>
                         <tr>
                             <td><h6>Delivery address</h6></td>
-                            <td>Delivery address</td>
+                            <td id="deliver_address">Delivery address</td>
                         </tr>
                         <tr>
                             <td><h6>Total product price</h6></td>
-                            <td>total product price</td>
+                            <td id="total_pro_price">total product price</td>
                         </tr>
                         <tr>
                             <td><h6>Total delivery price</h6></td>
-                            <td>total delivery price</td>
+                            <td id="deliver_price">total delivery price</td>
                         </tr>
                         <tr>
                             <td><h6>Total payment</h6></td>
-                            <td>$123.123</td>
+                            <td id="total_payment">$123.123</td>
                         </tr>
                         </tbody>
                     </table>
@@ -121,7 +152,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Place order</button>
+                <button type="button" class="btn btn-success btn-place-order">Place order</button>
             </div>
         </div>
     </div>
@@ -130,4 +161,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="/js/client/cart.js"></script>
 </html>

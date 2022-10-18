@@ -7,6 +7,14 @@ class UserModel
                                from users
                                where username = '${username}' and password = '${password}'`)
     }
+
+    getInfoUser(userId){
+        return database.query(`select * from users where user_id = ${userId}`)
+            .then((result) => {
+                return result.rows
+            })
+
+    }
 }
 
 module.exports = new UserModel
