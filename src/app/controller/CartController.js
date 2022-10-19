@@ -48,10 +48,10 @@ class CartController{
     {
         if(req.login){
             cartModel.getOldOrder(req.userId).then((result) =>{
-                res.send({status:200, oldOrder:result})
+                res.render('client/oldOrder.ejs',{cartList:result})
             })
         } else {
-            res.send({status:401})
+            res.redirect('/login')
         }
     }
 
@@ -135,8 +135,8 @@ class CartController{
                 const orderInfo = await cartModel.getOrderInfo(orderId)
                 const proTotalPrice = await cartModel.getProTotalPrice(orderId)
                 const customerInfo = await userModel.getInfoUser(userId)
-
-                if(orderInfo.length !== 0 && proTotalPrice.length !== 0){
+                    console.log(proTotalPrice)
+                if(orderInfo.length !== 0 && proTotalPrice[0].price !== null){
                     var currentDate = new Date();
                     orderInfo[0].orderDate = currentDate.toJSON().substring(0, 10)
                     currentDate.setDate(currentDate.getUTCDate() + 7);
@@ -151,6 +151,8 @@ class CartController{
                     }
                     console.log(orderInfo)
                     res.send({status:200, orderInfo: orderInfo[0]})
+                } else {
+                    res.send({status:400, mess:'There are no products in the cart'})
                 }
             }
             createOrder()

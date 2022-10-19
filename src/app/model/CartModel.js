@@ -8,6 +8,9 @@ class CartModel{
 
     createCart(userId){
         return database.query(`insert into orders(user_id, status) values ('${userId}', '0') returning *`)
+            .then((result) => {
+                return result.rows
+            })
     }
 
     addToCart(orderId,proId, price){
@@ -91,7 +94,18 @@ class CartModel{
     }
 
     getOldOrder(userId){
-        return database.query(`select * from orders where status = '1' and user_id = ${userId}`)
+        return database.query(`select p.pro_image,
+                                      p.pro_name,
+                                      p.pro_price,
+                                      od.quantity,
+                                      od.price,
+                                      to_char(o.order_date, 'DD/MM/YYYY') as order_date
+                               from orderdetail as od, product as p, orders as o
+                               where od.order_id = o.order_id
+                               and p.pro_id = od.pro_id
+                               and o.user_id = ${userId}
+                               and od.order_id = o.order_id
+                               and o.status = '1'`)
             .then((result) => {
                 return result.rows
             })

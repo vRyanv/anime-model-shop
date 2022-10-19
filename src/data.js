@@ -20,14 +20,22 @@ const {query} = require("express");
 //         price = parseFloat(price.substring(1))
 //         console.log(price)
 //     })
-// database.query(`select * from orders`)
-//     .then((result) => {
-//         console.log(result.rows)
-//     })
-database.query(`insert into orders(user_id, status) values (14, '0') returning *`)
+database.query(`select * from orders where status = '1'`)
     .then((result) => {
         console.log(result.rows)
     })
+// database.query(`select * from orderdetail`)
+//     .then((result) => {
+//         console.log(result.rows)
+//     })
+// database.query(`select * from users`)
+//     .then((result) => {
+//         console.log(result.rows)
+//     })
+// database.query(`insert into orders(user_id, status) values (14, '0') returning *`)
+//     .then((result) => {
+//         console.log(result.rows)
+//     })
 
 // database.query(`select sum(price) as p from orderdetail where order_id = 1`).then((result) => {
     // let priceList = result.rows
