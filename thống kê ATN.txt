@@ -1,0 +1,5 @@
+phân tích thống kê: 
+	supperadmin:
+		chia ra thành 2 phần
+			tổng quát: tổng tất cả doanh thu theo tháng,trung binh theo ngày
+			từng shop: theo tháng, trung bình một ngày
