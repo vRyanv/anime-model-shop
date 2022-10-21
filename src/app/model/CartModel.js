@@ -34,7 +34,8 @@ class CartModel{
                                where od.order_id = ${orderId} 
                                and p.pro_id = od.pro_id
                                and od.order_id = o.order_id
-                               and o.status = '0'`)
+                               and o.status = '0'
+                               order by od.orderdetail_id desc `)
     }
 
     getQuantityProInCart(orderId){
@@ -105,7 +106,8 @@ class CartModel{
                                and p.pro_id = od.pro_id
                                and o.user_id = ${userId}
                                and od.order_id = o.order_id
-                               and o.status = '1'`)
+                               and o.status = '1'
+                               order by o.order_id desc `)
             .then((result) => {
                 return result.rows
             })

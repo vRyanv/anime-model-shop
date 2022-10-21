@@ -10,9 +10,9 @@ class SupperAdminController{
 
     shopManagement(req, res)
     {
-        database.query(`select * from shop`)
+        shopModel.getShopList()
             .then((result) => {
-                res.render('admin/dashboard', {shopList: result.rows, page: 'shopManagement', type: 'list',role:req.userRole})
+                res.render('admin/dashboard', {shopList: result, page: 'shopManagement', type: 'list',role:req.userRole})
             })
     }
 
@@ -113,7 +113,7 @@ class SupperAdminController{
         let fullname = req.body.fullName
         let phone = req.body.phone
         let ownerShop = req.body.ownerShop
-        let userId = req.userId
+        let userId = req.body.userId
 
         database.query(`update users set shop_id = '${ownerShop}', fullname = '${fullname}', phone = '${phone}'  where user_id = ${userId}`)
             .then((result) => {
@@ -128,6 +128,26 @@ class SupperAdminController{
             })
     }
 
+    getRevenueAllShop(req, res){
+        var fromDate = null
+        var toDate = null
+
+        if(req.body.date){
+            fromDate  = req.body.fromDate
+            toDate = req.body.toDate
+        } else {
+            var getDate = new Date();
+            fromDate = getDate.toJSON().substring(0, 10)
+            toDate = getDate.toJSON().substring(0, 10)
+        }
+        const handleGetRevenue = async () => {
+            let revenue = await   shopModel.getRevenueAllShopByDate(fromDate, toDate)
+            let shops = await   shopModel.getShopList()
+            res.send({status:200, revenue, shops})
+        }
+        handleGetRevenue()
+
+    }
 
 }
 

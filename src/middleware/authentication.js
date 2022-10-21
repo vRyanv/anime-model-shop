@@ -13,6 +13,7 @@ class Authentication
             res.cookie(tokenName,jwt.sign({
                 orderId: user.orderId,
                 userId:user.userId,
+                fullName:user.fullName,
                 userRole: user.role
             }, tokenKey))
             user.role === '0' ?   res.send({status:200, role: 'user'}) : res.send({status:200, role: 'admin'})
@@ -24,24 +25,30 @@ class Authentication
             const user = await userModel.getUser(username, pass)
             if(user.rowCount !== 0){
                 const userId = user.rows[0].user_id
+                const fullName = user.rows[0].fullname
                 const cart = await cartModel.getCart(userId)
                 var userInfor = {
                     userId: null,
+                    fullName: null,
                     role: null,
                     orderId: null
                 }
                 if(cart.rowCount !== 0){
                     userInfor.userId = userId
+                    userInfor.fullName = fullName
                     userInfor.role = user.rows[0].role
                     userInfor.orderId = cart.rows[0].order_id
                     createToken(userInfor)
                 } else {
                     const newCart = await cartModel.createCart(userId)
-                    if(newCart.rowCount !== 0){
+                    if(newCart.length !== 0){
                         userInfor.userId = userId
+                        userInfor.fullName = fullName
                         userInfor.role = user.rows[0].role
-                        userInfor.orderId = newCart.rows[0].order_id
+                        userInfor.orderId = newCart[0].order_id
                         createToken(userInfor)
+                    } else {
+                        res.send({status:400})
                     }
                 }
             } else {
@@ -78,6 +85,7 @@ class Authentication
 
             req.userId = decode.userId
             req.cartId = decode.orderId
+            req.fullName = decode.fullName
             req.login = true
             next()
         }catch (error){

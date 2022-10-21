@@ -20,6 +20,9 @@
                         <li <% if(page === 'shop'){%> class="active" <%}%>><a href="/shop">Shop</a></li>
                         <li <% if(page === 'contact'){%> class="active" <%}%>><a href="/contact">Contact</a></li>
                         <% if(login) {%>
+                            <% if(page === 'shop') {%>
+                            <li><a ><%= fullName %></a></li>
+                            <% }%>
                             <li><a href="/logout">Logout</a></li>
                         <%} else {%>
                             <li><a href="/login">Login</a></li>

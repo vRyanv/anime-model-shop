@@ -48,7 +48,7 @@ class SiteController{
                 const proList = await productModel.getProForCustomer()
                 const cateList = await cateModel.getCateList()
                 const quantityProInCart = await cartModel.getQuantityProInCart(req.cartId)
-                res.render('client/shop.ejs', {proList, cateList,quantity: quantityProInCart.rowCount, page:'shop', login:req.login})
+                res.render('client/shop.ejs', {proList, cateList,quantity: quantityProInCart.rowCount, page:'shop', login:req.login, fullName:req.fullName})
             }
             handleRequest()
         } else {

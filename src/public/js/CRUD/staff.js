@@ -16,7 +16,7 @@ $(document).ready(function (){
                 success: function (data){
                     if(data.status === 200)
                     {
-                        location.href = '/supper-admin/shop/management'
+                        location.href = '/supper-admin/staff/management'
                     }
                     else
                     {
@@ -30,6 +30,7 @@ $(document).ready(function (){
 
     $('#btn_submit_edit_staff').click(function (){
         if(validate()) {
+            let userId = $('#txt_user_id').val()
             let username = $('#txt_username').val()
             let pass = $('#txt_password').val()
             let fullName = $('#txt_full_name').val()
@@ -39,7 +40,7 @@ $(document).ready(function (){
             $.ajax({
                 url: '/supper-admin/staff/edit',
                 type: 'POST',
-                data: {username, pass, fullName, phone, ownerShop},
+                data: {userId, username, pass, fullName, phone, ownerShop},
                 beforeSend: animationLogin(),
                 success: function (data){
                     if(data.status === 200)

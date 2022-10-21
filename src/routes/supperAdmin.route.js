@@ -18,6 +18,9 @@ route.post('/staff/add', authentication.checkCookieAdmin, supperAdminController.
 route.get('/staff/edit/:userId', authentication.checkCookieAdmin, supperAdminController.editStaff)
 route.post('/staff/edit', authentication.checkCookieAdmin, supperAdminController.editStaffProcess)
 
+//statistical
+route.get('/get-revenue-all-shop', authentication.checkCookieAdmin, supperAdminController.getRevenueAllShop)
+route.post('/get-revenue-all-shop-by-date', authentication.checkCookieAdmin, supperAdminController.getRevenueAllShop)
 
 route.get('/', authentication.checkCookieAdmin, supperAdminController.statistical)
 

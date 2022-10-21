@@ -91,8 +91,6 @@
                     <%- include('./supplier/supplierIndex.ejs') %>
                 <% } else if(page === 'order'){%>
                     <%- include('./product/categoryIndex.ejs') %>
-                <% } else if(page === 'supperAdmin'){%>
-                    <%- include('./product/supperAdminIndex.ejs') %>
                 <%} else if (page === 'shopManagement'){%>
                     <%- include('./shop/shopManagementIndex.ejs') %>
                 <%} else if (page === 'staffManagement'){%>
@@ -111,6 +109,7 @@
 
     <script src="/js/dashboard/dashboard.js"></script>
     <% if(page === 'dashboard'){%>
+        <script src="https://momentjs.com/downloads/moment.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <% if(role === '2'){%>
             <script src="/js/dashboard/statiSupper.js"></script>
