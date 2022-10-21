@@ -10,7 +10,8 @@ route.get('/register', siteController.register)
 
 //admin
 route.get('/dashboard', authentication.checkCookieAdmin, siteController.dashboard)
-route.get('/supper-admin', authentication.checkCookieAdmin, siteController.dashboard)
+route.post('/get-revenue-admin-by-date', authentication.checkCookieAdmin, siteController.totalRevenueOfShop)
+route.get('/order', authentication.checkCookieAdmin, siteController.getOrderTab)
 
 //client
 route.get('/', authentication.checkCookieCustomer, siteController.home)

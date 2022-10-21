@@ -3,11 +3,6 @@ const shopModel = require('../model/ShopModel')
 
 class SupperAdminController{
 
-    statistical(req, res)
-    {
-        res.render('admin/dashboard', {page:'dashboard', role: req.userRole})
-    }
-
     shopManagement(req, res)
     {
         shopModel.getShopList()

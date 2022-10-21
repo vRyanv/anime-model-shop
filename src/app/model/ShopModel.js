@@ -47,6 +47,29 @@ class ShopModel{
                 return result.rows
             })
     }
+
+    getRevenueOfShop(userId, fromDate, toDate) {
+        return database.query(`select s.shop_id, s.shop_name, p.pro_id, sum(od.price), o.status, o.order_date
+                               from product as p,
+                                    shop as s,
+                                    orderdetail as od,
+                                    orders as o
+                               where p.shop_id = s.shop_id
+                                 and od.pro_id = p.pro_id
+                                 and o.order_id = od.order_id
+                                 and o.status = '1'
+                                 and s.shop_id = (select shop_id from users where user_id =${userId})
+                                 and o.order_date >= '${fromDate}'
+                                 and o.order_date <= '${toDate}'
+                               group by s.shop_id, s.shop_name, p.pro_id, o.status, o.order_date`)
+            .then((result) => {
+                return result.rows
+            })
+    }
+
+    getAllOrder(userId){
+
+    }
 }
 
 module.exports = new ShopModel

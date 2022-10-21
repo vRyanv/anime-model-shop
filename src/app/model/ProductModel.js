@@ -189,6 +189,8 @@ class ProductModel
         }
         return processDelete()
     }
+
+
 }
 
 module.exports = new ProductModel

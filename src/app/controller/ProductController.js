@@ -132,11 +132,8 @@ class ProductController{
             const result =  await productModel.edit(product, req.file.filename)
             if(result.rowCount !== 0){
                 unlink('src/public/images/product/'+oldImage[0].pro_image, (err) => {
-                    if (!err){
                         res.send({status:200, mess: 'update product success'})
-                    } else {
-                        res.send({status:400, mess: 'update product fail'})
-                    }});
+                    })
             }
         }
 

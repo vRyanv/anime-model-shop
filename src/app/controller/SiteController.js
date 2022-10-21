@@ -1,6 +1,7 @@
 const productModel = require('../model/ProductModel')
 const cartModel = require('../model/CartModel')
 const cateModel = require('../model/CategoryModel')
+const shopModel = require('../model/ShopModel')
 
 class SiteController{
 
@@ -22,7 +23,9 @@ class SiteController{
 
     dashboard(req, res)
     {
-        res.render('admin/dashboard.ejs', {page:'dashboard', role: req.userRole})
+        var getDate = new Date();
+        let date = getDate.toJSON().substring(0, 10).replaceAll('-', '/')
+        res.render('admin/dashboard.ejs', {page:'dashboard', date, role: req.userRole})
     }
 
     page404(req, res)
@@ -73,6 +76,28 @@ class SiteController{
         res.render('client/cart.ejs', {page:'cart', login:req.login})
     }
 
+    getOrderTab(req, res){
+        shopModel.getAllOrder(userId).then((result) => {
+            res.render()
+        })
+    }
+
+    totalRevenueOfShop(req, res){
+        var fromDate = null
+        var toDate = null
+        if(req.body.date){
+            console.log('here')
+            fromDate  = req.body.fromDate
+            toDate = req.body.toDate
+        } else {
+            var getDate = new Date();
+            fromDate = getDate.toJSON().substring(0, 10)
+            toDate = getDate.toJSON().substring(0, 10)
+        }
+        shopModel.getRevenueOfShop(req.userId, fromDate, toDate).then((result) => {
+            res.send({status:200, revenue:result})
+        })
+    }
 
 }
 

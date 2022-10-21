@@ -2,17 +2,14 @@
     <nav class="navbar">
         <div class="" style="padding-left: 3rem;padding-top: 0.3rem;">
             Date:
-            <input type="text" value="" id="txt_from_date" placeholder="yyyy/mm/dd"> to
-            <input type="text" value="" id="txt_to_date" placeholder="yyyy/mm/dd">
-            <button class="btn btn-primary" id="btn_search_revenue_by_date" style="vertical-align: bottom"><i class="bi-funnel"></i></button>
+            <input type="text" value="<%= date %>" id="txt_from_date" placeholder="yyyy/mm/dd"> to
+            <input type="text" value="<%= date %>" id="txt_to_date" placeholder="yyyy/mm/dd">
+            <button title="Filter" class="btn btn-primary" id="btn_search_revenue_by_date" style="vertical-align: bottom"><i class="bi-funnel"></i></button>
         </div>
     </nav>
 </div>
 <div id="type-statistical" style="padding-top: 6rem">
     <div id="total_revenue">Total revenue:</div>
     <canvas id="shop_chart" style="max-width: 95%; max-height: 88%"></canvas>
-    <div style="padding-top: 100rem">
-
-    </div>
 </div>
 

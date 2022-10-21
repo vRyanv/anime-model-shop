@@ -69,7 +69,7 @@ $(document).ready(function (){
                     },
                     error: function (){
                         appProduct.animation()
-                        alert('Something wrong: add product fail')
+                        alert('Server: add product fail')
                     }
                 })
             }
