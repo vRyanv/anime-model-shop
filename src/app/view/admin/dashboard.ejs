@@ -70,7 +70,7 @@
                             <div class="controller-in-dashboard <% if(page === "product"){ %>active <%}%>"  data-page="product"><i class="bi-slack"></i> Product </div>
                             <div class="controller-in-dashboard <% if(page === "category"){ %>active <%}%>"  data-page="category"><i class="bi-tags"></i> Category </div>
                             <div class="controller-in-dashboard <% if(page === "supplier"){ %>active <%}%>"  data-page="supplier"><i class="bi-skype"></i> Supplier </div>
-                            <div class="controller-in-dashboard <% if(page === "statistical"){ %>active <%}%>"  data-page="order"><i class="bi-box-seam"></i> Order </div>
+                            <div class="controller-in-dashboard <% if(page === "order"){ %>active <%}%>"  data-page="order"><i class="bi-box-seam"></i> Order </div>
                         <% } else {%>
                             <div class="controller-in-dashboard <% if(page === "dashboard"){ %>active <%}%>" data-page="supper-admin"><i class="bi-speedometer2"></i> Dashboard </div>
                             <div class="controller-in-dashboard <% if(page === "shopManagement"){ %>active <%}%>"  data-page="supper-admin/shop/management"><i class="bi-shop"></i> Shops </div>
@@ -90,7 +90,7 @@
                 <% } else if(page === 'supplier'){%>
                     <%- include('./supplier/supplierIndex.ejs') %>
                 <% } else if(page === 'order'){%>
-                    <%- include('./product/categoryIndex.ejs') %>
+                    <%- include('./order/orders.ejs') %>
                 <%} else if (page === 'shopManagement'){%>
                     <%- include('./shop/shopManagementIndex.ejs') %>
                 <%} else if (page === 'staffManagement'){%>
@@ -126,5 +126,7 @@
         <script src="/js/CRUD/staff.js" ></script>
     <% } else if(page === 'shopManagement'){%>
         <script src="/js/CRUD/shop.js" ></script>
+    <% } else if(page === 'order'){%>
+        <script src="/js/dashboard/order.js" ></script>
     <% } %>
 </html>

@@ -67,8 +67,53 @@ class ShopModel{
             })
     }
 
-    getAllOrder(userId){
+    getAllOrder(userId) {
+        return database.query(`select o.order_id, 
+                                        u.username, 
+                                        u.fullname, 
+                                        u.phone, 
+                                        u.address,
+                                        to_char(o.order_date, 'DD/MM/YYYY') as order_date,
+                                        to_char(o.delivery_date, 'DD/MM/YYYY') as delivery_date
+                               from orders as o, users as u, shop as s, orderdetail as od, product as p
+                               where o.user_id = u.user_id
+                                 and o.order_id = od.order_id
+                                 and od.pro_id = p.pro_id
+                                 and p.shop_id = s.shop_id
+                                 and o.status = '1'
+                                 and s.shop_id = (select shop_id from users where user_id = ${userId})
+                                 group by o.order_id, u.username, u.fullname, u.phone,  u.address, o.order_date, o.delivery_date`)
+            .then((result) => {
+                return result.rows
+            })
+    }
 
+    getShopName(userId) {
+        return database.query(`select s.shop_name
+                               from shop as s,
+                                    users as u
+                               where u.shop_id = s.shop_id
+                               and u.user_id = ${userId}`)
+            .then((result) => {
+                return result.rows[0]
+            })
+    }
+
+    getOrderDetailShop(userId, orderId) {
+        return database.query(`select p.pro_image, p.pro_name, p.pro_price, od.quantity, od.price
+                               from orderdetail as od,
+                                    product as p,
+                                    orders as o,
+                                    shop as s
+                               where od.order_id = ${orderId}
+                                 and p.pro_id = od.pro_id
+                                 and od.order_id = o.order_id
+                                 and p.shop_id = s.shop_id
+                                 and s.shop_id = (select shop_id from users where user_id = ${userId})
+                               order by od.orderdetail_id desc`)
+            .then((result) => {
+                return result.rows
+            })
     }
 }
 

@@ -1,0 +1,69 @@
+<div style="padding-top: 5rem">
+    <table class="table table-hover pt-10">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Order date</th>
+            <th scope="col">Delivery date</th>
+            <th scope="col">Detail</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let i=0; i<orderList.length;i++){ %>
+            <tr>
+                <th scope="row"><%= i + 1 %></th>
+                <td><%= orderList[i].username %></td>
+                <td><%= orderList[i].fullname %></td>
+                <td><%= orderList[i].phone %></td>
+                <td><%= orderList[i].address %></td>
+                <td><%= orderList[i].order_date %></td>
+                <td><%= orderList[i].delivery_date %></td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary btn-view-detail" data-order-id="<%= orderList[i].order_id %>">view</button>
+                    </div>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>
+
+<button data-bs-toggle="modal" id="btn_open_detail_model" data-bs-target="#order_detail_model" style="width: 8rem;margin-left: 2rem" hidden></button>
+<!-- Modal -->
+<div class="modal fade" id="order_detail_model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog  modal-dialog-centered " style="max-width: 68rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Order detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <div class="modal-body">
+                    <table class="table table-hover pt-10">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total price</th>
+                        </tr>
+                        </thead>
+                        <tbody id="body-order-detail-table">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <p id="total_price_order_detail" style="text-align: center; color: mediumpurple; font-weight: bold"></p>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

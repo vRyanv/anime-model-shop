@@ -39,6 +39,7 @@ $(document).ready(function (){
                     success: function (data){
                         if(data.status === 200){
                             appAdmin.revenueCalculation(data.revenue)
+                            $('#shop_name').html('Shop: '+data.shopName)
                         } else {
                             appAdmin.animation()
                             alert('something wrong! ' + data.mess)
@@ -51,23 +52,17 @@ $(document).ready(function (){
                 })
 
         },
-        renderRevenue: function (shopName, revenue){
-            $('#shop_name').html('Shop: '+shopName)
-            $('#total_revenue').html('Total revenue: $'+revenue)
-            appAdmin.animation()
-        },
         revenueCalculation: function (revenue){
             if(revenue.length !== 0){
                 let _revenue = 0
                 for(let i = 0;i<revenue.length;i++){
                     _revenue += parseFloat(revenue[i].sum.substring(1))
                 }
-                appAdmin.renderRevenue(revenue[0].shop_name,_revenue)
+                $('#total_revenue').html('Total revenue: $'+_revenue)
             } else {
-                appAdmin.animation()
-                alert('Not found')
+                $('#total_revenue').html('Total revenue: no income')
             }
-
+            appAdmin.animation()
         },
         animation: function (){
             if($('.canvas-animation').css('display') == 'none')

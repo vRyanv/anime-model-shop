@@ -77,8 +77,24 @@ class SiteController{
     }
 
     getOrderTab(req, res){
-        shopModel.getAllOrder(userId).then((result) => {
-            res.render()
+        shopModel.getAllOrder(req.userId).then((result) => {
+            res.render('admin/dashboard.ejs', {page: 'order', orderList: result,role: req.userRole})
+        })
+    }
+
+    getOrderDetail(req, res){
+        shopModel.getOrderDetailShop(req.userId, req.params.id).then((result) => {
+            let orderDetail = result
+            let totalPrice = 0
+            for (let i=0;i<orderDetail.length;i++){
+                totalPrice += parseFloat(orderDetail[i].price.substring(1))
+            }
+            if(orderDetail){
+                res.send({status:200, orderDetail, totalPrice})
+            } else {
+                res.send({status:400, mess: 'Not found'})
+            }
+
         })
     }
 
@@ -94,8 +110,10 @@ class SiteController{
             fromDate = getDate.toJSON().substring(0, 10)
             toDate = getDate.toJSON().substring(0, 10)
         }
-        shopModel.getRevenueOfShop(req.userId, fromDate, toDate).then((result) => {
-            res.send({status:200, revenue:result})
+        shopModel.getRevenueOfShop(req.userId, fromDate, toDate).then((revenue) => {
+            shopModel.getShopName(req.userId).then((shop) => {
+                res.send({status:200, revenue, shopName:shop.shop_name})
+            })
         })
     }
 
