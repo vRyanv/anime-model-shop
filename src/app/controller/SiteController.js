@@ -46,6 +46,7 @@ class SiteController{
 
     shop(req, res)
     {
+
         if(req.login){
             const handleRequest = async() => {
                 const proList = await productModel.getProForCustomer()
